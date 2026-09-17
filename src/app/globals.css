@@ -1,26 +1,174 @@
 @import "tailwindcss";
 
+/* Dark mode follows the `.dark` class that next-themes puts on <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- Colour tokens ---------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #fbf8f3;
+  --bg-soft: #f3eee5;
+  --surface: #ffffff;
+  --surface-2: #f6f2ea;
+  --border: #e4ddd0;
+  --text: #1b1f3b;
+  --text-muted: #555c79;
+  --primary: #c8166a; /* hot pink, darkened for contrast on paper */
+  --primary-soft: #fde3ef;
+  --gold: #8f5f00;
+  --gold-bright: #f5b82e;
+  --sky: #0a6aa3;
+  --sky-bright: #3fb6f5;
+  --mint: #08784a;
+  --terrain: #b98a4e;
+  --shadow: 0 1px 2px rgb(27 31 59 / 0.06), 0 8px 24px rgb(27 31 59 / 0.08);
+  --selection: #fbd0e3;
+}
+
+.dark {
+  --bg: #0a0f1f;
+  --bg-soft: #0e1528;
+  --surface: #121a31;
+  --surface-2: #18223d;
+  --border: #243152;
+  --text: #e9edf7;
+  --text-muted: #a3adc9;
+  --primary: #ff5fa2;
+  --primary-soft: #3a1630;
+  --gold: #ffcc4d;
+  --gold-bright: #ffcc4d;
+  --sky: #6fd0ff;
+  --sky-bright: #6fd0ff;
+  --mint: #5cf2a8;
+  --terrain: #d7a86e;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 12px 32px rgb(0 0 0 / 0.35);
+  --selection: #5b1f44;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-primary: var(--primary);
+  --color-primary-soft: var(--primary-soft);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-sky: var(--sky);
+  --color-sky-bright: var(--sky-bright);
+  --color-mint: var(--mint);
+  --color-terrain: var(--terrain);
+
+  --font-sans: var(--font-body);
+  --font-display: var(--font-heading);
+  --font-mono: var(--font-code);
+
+  --shadow-card: var(--shadow);
+
+  --animate-float: float 4s ease-in-out infinite;
+  --animate-blink: blink 1s steps(2, start) infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes sparkle-grow {
+  0% { transform: scale(0); }
+  50% { transform: scale(1); }
+  100% { transform: scale(0); }
+}
+
+@keyframes sparkle-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(180deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+/* ---------- Base ---------- */
+html {
+  background: var(--bg);
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--selection);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+:focus-visible {
+  outline: 3px solid var(--sky-bright);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Small utilities ---------- */
+@utility container-page {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 40rem) {
+    padding-inline: 1.5rem;
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-code), ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@utility text-gradient {
+  background: linear-gradient(100deg, var(--primary), var(--gold-bright) 55%, var(--sky-bright));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility grid-dots {
+  background-image: radial-gradient(color-mix(in oklab, var(--text) 14%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
 }

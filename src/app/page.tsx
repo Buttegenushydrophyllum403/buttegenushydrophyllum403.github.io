@@ -1,69 +1,85 @@
-import Image from "next/image";
+import { ArrowRight, Mail } from "lucide-react";
+import Link from "next/link";
+import { Reveal } from "@/components/effects/Reveal";
+import { ChatTeaser } from "@/components/home/ChatTeaser";
+import { Hero } from "@/components/home/Hero";
+import { JourneyPath } from "@/components/home/JourneyPath";
+import { SectionHeading } from "@/components/home/SectionHeading";
+import { TelemetryStrip } from "@/components/home/TelemetryStrip";
+import { Toolbox } from "@/components/home/Toolbox";
+import { TrophyShelf } from "@/components/home/TrophyShelf";
+import { ProjectCard } from "@/components/projects/ProjectCard";
+import { achievements, journey, projects, skillGroups } from "@/content";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      <Hero />
+      <TelemetryStrip />
+
+      <section className="container-page scroll-mt-20 pt-24" id="journey" aria-labelledby="journey-title">
+        <SectionHeading
+          id="journey-title"
+          eyebrow="Flight log · 2022 → now"
+          title="From rovers to rotors"
+          intro="My career started on the ground with a Mars rover and then, quite literally, took off. Scroll to fly the route."
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+        <JourneyPath stops={journey} />
+      </section>
+
+      <section className="container-page pt-28" aria-labelledby="projects-title">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <SectionHeading
+            id="projects-title"
+            eyebrow="Missions"
+            title="Things I've shipped (and flown)"
+            intro="Apps in people's pockets, models running offline, and machines that move."
+            className="mb-0"
+          />
+          <Link href="/projects" className="inline-flex items-center gap-1.5 font-semibold text-primary hover:underline">
+            All projects <ArrowRight size={17} aria-hidden />
+          </Link>
+        </div>
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((p, i) => (
+            <ProjectCard key={p.slug} project={p} index={i} />
+          ))}
+        </div>
+      </section>
+
+      <section className="container-page pt-28" aria-labelledby="trophies-title">
+        <SectionHeading id="trophies-title" eyebrow="Trophy shelf" title="Scoreboard" intro="Mostly earned with a rover, some sleep deprivation, and a very patient team." />
+        <TrophyShelf achievements={achievements} />
+      </section>
+
+      <section className="container-page pt-24" aria-labelledby="toolbox-title">
+        <SectionHeading id="toolbox-title" eyebrow="Toolbox" title="What I work with" intro="Hover the chips. They like it." />
+        <Toolbox groups={skillGroups} />
+      </section>
+
+      <section className="container-page pt-28" aria-label="Chat with my AI twin">
+        <Reveal>
+          <ChatTeaser />
+        </Reveal>
+      </section>
+
+      <section className="container-page pt-24 text-center" aria-labelledby="contact-title">
+        <Reveal>
+          <p className="eyebrow mb-3">Mission control</p>
+          <h2 id="contact-title" className="font-display text-4xl font-extrabold sm:text-5xl">
+            Got something worth building?
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-muted">
+            Apps, AI, or anything with propellers. Send a message and the real Rifat (not the AI twin) will get back to you.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/contact"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-lg font-semibold text-white shadow-card transition-transform hover:-translate-y-0.5 dark:text-bg"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <Mail size={20} aria-hidden /> Get in touch
+          </Link>
+        </Reveal>
+      </section>
+    </>
   );
 }

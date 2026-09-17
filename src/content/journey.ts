@@ -1,0 +1,111 @@
+import type { z } from "zod";
+import type { journeyStopSchema } from "./schema";
+
+/**
+ * The career journey, in the order it is drawn on the home page.
+ * The rover drives the "ground" stops, then takes off as a drone for the "air" stops.
+ */
+export const journey: z.input<typeof journeyStopSchema>[] = [
+  {
+    id: "iut",
+    period: "2022",
+    org: "Islamic University of Technology",
+    orgNote: "IUT",
+    role: "BSc in Computer Science & Engineering",
+    kind: "education",
+    terrain: "ground",
+    summary: "Started CSE at IUT. Discovered that robots are just bugs with wheels.",
+    highlights: ["CGPA 3.78 / 4.00"],
+  },
+  {
+    id: "altair",
+    period: "2023 – 2024",
+    org: "Project Altair",
+    orgNote: "IUT Mars Rover Team",
+    role: "Software Sub-team Senior Developer",
+    kind: "team",
+    terrain: "ground",
+    summary: "Wrote the software for a Mars rover that competed on three international stages.",
+    highlights: [
+      "6th globally at the International Rover Challenge (1st in Bangladesh, 1st in Science Task)",
+      "16th globally at the European Rover Challenge",
+      "Competed at the University Rover Challenge",
+    ],
+    projectSlug: "project-altair",
+  },
+  {
+    id: "megamind",
+    period: "Feb 2024 – Jul 2024",
+    org: "Megamind Tech",
+    orgNote: "Remote, Canada",
+    role: "LLM Developer / ML Engineer",
+    kind: "work",
+    terrain: "air",
+    summary: "Took off into large language models: offline inference, fine-tuning and lean deployment.",
+    highlights: [
+      "Offline inference and fine-tuning of LLMs",
+      "Optimized deployment pipelines for resource-constrained environments",
+    ],
+    projectSlug: "megamind-llm",
+  },
+  {
+    id: "aero",
+    period: "2024 – 2025",
+    org: "Project Aero",
+    orgNote: "Drone team",
+    role: "Team Lead",
+    kind: "team",
+    terrain: "air",
+    summary: "Led a drone team: flight control, real-time computer vision and 3D mapping.",
+    highlights: [
+      "Flight control and navigation",
+      "Real-time object detection and tracking",
+      "3D mapping of environments from drone footage",
+    ],
+    projectSlug: "project-aero",
+  },
+  {
+    id: "star-technologies",
+    period: "Mar 2025 – Present",
+    org: "Star Technologies",
+    role: "Senior Software Engineer",
+    kind: "work",
+    terrain: "air",
+    summary: "Shipping full-stack mobile apps and web platforms, from first sketch to the app stores.",
+    highlights: [
+      "GenieA with Sylhet Metropolitan Police: 10K+ downloads",
+      "Health Star: healthcare MVP built from scratch",
+      "Real-time chat, notifications, data analysis, RAG and a voice assistant",
+    ],
+    projectSlug: "genie-a",
+    current: true,
+  },
+  {
+    id: "star-watch",
+    period: "Nov 2025 – Present",
+    org: "Star Watch",
+    orgNote: "Under Star Technologies",
+    role: "Project Manager / Developer",
+    kind: "work",
+    terrain: "air",
+    summary: "Building drone systems from scratch. This time the only judge is gravity.",
+    highlights: [
+      "MAVLink, ROS, ArduPilot and WebRTC video streaming",
+      "Automation with LiDAR, optical flow and sonar",
+      "AI-based mission planning",
+    ],
+    projectSlug: "star-watch",
+    current: true,
+  },
+  {
+    id: "graduation",
+    period: "2026",
+    org: "Islamic University of Technology",
+    orgNote: "IUT",
+    role: "Graduated, BSc in CSE",
+    kind: "education",
+    terrain: "air",
+    summary: "Graduated with a 3.78 CGPA, overlapping with a real engineering job. Sleep was optional.",
+    highlights: ["CGPA 3.78 / 4.00"],
+  },
+];
