@@ -75,7 +75,7 @@ export default function ChatPanel() {
           <p id="chat-title" className="font-display font-bold leading-tight">
             Rifat&apos;s AI twin
           </p>
-          <p className="font-mono text-[0.68rem] tracking-wide text-muted uppercase">AI, not actually Rifat · may be wrong</p>
+          <p className="font-mono text-[0.68rem] tracking-wide text-muted uppercase">AI · not actually Rifat</p>
         </div>
         {messages.length > 0 && (
           <button type="button" onClick={reset} className="grid size-9 place-items-center rounded-full hover:bg-surface-2" aria-label="Start a new conversation" title="New conversation">
@@ -162,7 +162,7 @@ export default function ChatPanel() {
               }
             }}
             placeholder="Ask me anything (about Rifat)…"
-            className="max-h-32 min-h-6 flex-1 resize-none bg-transparent py-1 outline-none placeholder:text-muted"
+            className="max-h-32 min-h-6 flex-1 resize-none bg-transparent py-1 outline-none placeholder:text-muted focus-visible:outline-none"
           />
           {busy ? (
             <button type="button" onClick={stop} className="grid size-9 shrink-0 place-items-center rounded-full bg-text text-bg" aria-label="Stop reply">

@@ -23,6 +23,14 @@ export const accentVar = {
   mint: "var(--mint)",
 } as const;
 
+/** Accent colours safe for text on both themes (darker variants in light mode). */
+export const accentTextVar = {
+  primary: "var(--primary)",
+  gold: "var(--gold)",
+  sky: "var(--sky)",
+  mint: "var(--mint)",
+} as const;
+
 export function random(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }

@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Boop } from "@/components/effects/Boop";
 import { SmartMedia } from "@/components/media/SmartMedia";
 import type { Project } from "@/content";
-import { accentVar } from "@/lib/utils";
+import { accentTextVar, accentVar } from "@/lib/utils";
 
 const CATEGORY_LABEL: Record<Project["category"], string> = { app: "App", ai: "AI", robotics: "Robotics" };
 
@@ -40,7 +40,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             <SmartMedia media={cover} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
           </div>
         )}
-        <span className="absolute top-3 left-3 rounded-full bg-bg/85 px-2.5 py-1 font-mono text-[0.68rem] tracking-widest uppercase backdrop-blur" style={{ color }}>
+        <span className="absolute top-3 left-3 rounded-full bg-bg/85 px-2.5 py-1 font-mono text-[0.68rem] tracking-widest uppercase backdrop-blur" style={{ color: accentTextVar[project.accent] }}>
           {CATEGORY_LABEL[project.category]}
         </span>
       </div>

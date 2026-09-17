@@ -25,9 +25,12 @@ export function ThemeToggle() {
       title={isDark ? "Light mode" : "Dark mode"}
     >
       <Boop rotation={isDark ? -25 : 25} timing={200}>
+        {!isClient ? (
+          <span className="block size-5" />
+        ) : (
         <AnimatePresence mode="wait" initial={false}>
           <motion.span
-            key={isClient ? (isDark ? "moon" : "sun") : "placeholder"}
+            key={isDark ? "moon" : "sun"}
             className="block"
             initial={{ rotate: -90, scale: 0.4, opacity: 0 }}
             animate={{ rotate: 0, scale: 1, opacity: 1 }}
@@ -37,6 +40,7 @@ export function ThemeToggle() {
             {isDark ? <Moon size={20} /> : <Sun size={20} />}
           </motion.span>
         </AnimatePresence>
+        )}
       </Boop>
     </button>
   );

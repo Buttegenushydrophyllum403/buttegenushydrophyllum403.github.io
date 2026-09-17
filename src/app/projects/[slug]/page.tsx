@@ -10,7 +10,7 @@ import { PhoneMockup } from "@/components/projects/PhoneMockup";
 import { StoreBadges } from "@/components/projects/StoreBadges";
 import { getProject, projects } from "@/content";
 import { projectJsonLd } from "@/lib/seo";
-import { accentVar } from "@/lib/utils";
+import { accentTextVar, accentVar } from "@/lib/utils";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -68,6 +68,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
   const prev = projects[(index - 1 + projects.length) % projects.length];
   const next = projects[(index + 1) % projects.length];
   const color = accentVar[project.accent];
+  const textColor = accentTextVar[project.accent];
   const jsonLd = projectJsonLd(slug);
   let n = 0;
 
@@ -82,7 +83,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
       <header className="mt-6 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div>
           <p className="eyebrow">
-            <span style={{ color }}>Mission log</span> · {project.period}
+            <span style={{ color: textColor }}>Mission log</span> · {project.period}
           </p>
           <h1 className="mt-3 font-display text-5xl font-extrabold sm:text-6xl">{project.title}</h1>
           <p className="mt-4 text-xl text-muted">{project.tagline}</p>
@@ -98,7 +99,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
             {project.status && (
               <div>
                 <dt className="eyebrow">Status</dt>
-                <dd className="mt-1 font-semibold" style={{ color }}>
+                <dd className="mt-1 font-semibold" style={{ color: textColor }}>
                   {project.status}
                 </dd>
               </div>
@@ -142,20 +143,20 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
       )}
 
       <div className="mt-10">
-        <Section n={++n} title="Mission brief" color={color}>
+        <Section n={++n} title="Mission brief" color={textColor}>
           {project.brief.map((p) => (
             <p key={p}>{p}</p>
           ))}
         </Section>
-        <Section n={++n} title="My role" color={color}>
+        <Section n={++n} title="My role" color={textColor}>
           <Bullets items={project.myRole} />
         </Section>
         {project.architecture && (
-          <Section n={++n} title="Architecture" color={color}>
+          <Section n={++n} title="Architecture" color={textColor}>
             <ArchitectureDiagram architecture={project.architecture} accent={project.accent} />
           </Section>
         )}
-        <Section n={++n} title="Stack" color={color}>
+        <Section n={++n} title="Stack" color={textColor}>
           <ul className="flex flex-wrap gap-2">
             {project.stack.map((s) => (
               <li key={s} className="rounded-full bg-surface-2 px-3 py-1.5 text-base font-medium">
@@ -164,16 +165,16 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
             ))}
           </ul>
         </Section>
-        <Section n={++n} title="Results" color={color}>
+        <Section n={++n} title="Results" color={textColor}>
           <Bullets items={project.results} />
         </Section>
         {project.sideways && project.sideways.length > 0 && (
-          <Section n={++n} title="What went sideways" color={color}>
+          <Section n={++n} title="What went sideways" color={textColor}>
             <Bullets items={project.sideways} />
           </Section>
         )}
         {project.gallery.length > 0 && (
-          <Section n={++n} title="Gallery" color={color}>
+          <Section n={++n} title="Gallery" color={textColor}>
             <div className="grid gap-4 sm:grid-cols-2">
               {project.gallery.map((m) => (
                 <figure key={m.alt} className="overflow-hidden rounded-2xl border border-border">

@@ -2,7 +2,7 @@
 
 import { Boop } from "@/components/effects/Boop";
 import type { SkillGroup } from "@/content";
-import { accentVar } from "@/lib/utils";
+import { accentTextVar, accentVar } from "@/lib/utils";
 
 export function Toolbox({ groups }: { groups: SkillGroup[] }) {
   return (
@@ -11,7 +11,7 @@ export function Toolbox({ groups }: { groups: SkillGroup[] }) {
         const color = accentVar[g.accent];
         return (
           <div key={g.id} className="rounded-3xl border border-border bg-surface p-6 shadow-card">
-            <p className="font-display text-xl font-bold" style={{ color }}>
+            <p className="font-display text-xl font-bold" style={{ color: accentTextVar[g.accent] }}>
               {g.title}
             </p>
             <p className="mt-1 text-sm text-muted">{g.blurb}</p>

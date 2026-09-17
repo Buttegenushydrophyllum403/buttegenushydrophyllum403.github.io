@@ -1,7 +1,7 @@
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { Fragment } from "react";
 import type { Project } from "@/content";
-import { accentVar } from "@/lib/utils";
+import { accentTextVar, accentVar } from "@/lib/utils";
 
 /** A left-to-right (top-to-bottom on mobile) flow of stages built from content. */
 export function ArchitectureDiagram({ architecture, accent }: { architecture: NonNullable<Project["architecture"]>; accent: Project["accent"] }) {
@@ -12,7 +12,7 @@ export function ArchitectureDiagram({ architecture, accent }: { architecture: No
         {architecture.stages.map((stage, i) => (
           <Fragment key={stage.label}>
             <div className="flex-1 rounded-2xl border border-dashed p-4" style={{ borderColor: color }}>
-              <p className="eyebrow mb-3" style={{ color }}>
+              <p className="eyebrow mb-3" style={{ color: accentTextVar[accent] }}>
                 {String(i + 1).padStart(2, "0")} · {stage.label}
               </p>
               <ul className="space-y-2">

@@ -37,9 +37,10 @@ export function JourneyPath({ stops }: { stops: JourneyStop[] }) {
   });
 
   return (
-    <div className="relative">
+    // overflow-x-clip: cards slide in from the side and must not widen the page on phones.
+    <div className="relative overflow-x-clip">
       {!reduced && (
-        <div className="pointer-events-none absolute top-0 bottom-0 left-5 w-10 -translate-x-1/2 md:left-1/2" aria-hidden>
+        <div className="pointer-events-none absolute top-0 bottom-0 left-7 w-10 -translate-x-1/2 md:left-1/2" aria-hidden>
           {/* Rail: terrain until takeoff, sky afterwards */}
           <div
             className="absolute top-0 bottom-0 left-1/2 w-1 -translate-x-1/2 rounded-full opacity-25"
@@ -74,10 +75,12 @@ export function JourneyPath({ stops }: { stops: JourneyStop[] }) {
           const left = i % 2 === 0;
           const isTakeoff = i === takeoffIndex;
           return (
-            <li key={stop.id} className={cn("relative", !reduced && "pl-14 md:pl-0")}>
+            <li key={stop.id} className={cn("relative", !reduced && "pl-[4.25rem] md:pl-0")}>
               {isTakeoff && !reduced && (
-                <p className="eyebrow mb-6 text-sky md:text-center">
-                  <span aria-hidden>▲▲ </span>Takeoff<span aria-hidden> ▲▲</span>
+                <p className="mb-6 md:text-center">
+                  <span className="eyebrow relative z-10 inline-block rounded-full border border-sky-bright/50 bg-bg px-3 py-1 text-sky">
+                    <span aria-hidden>▲ </span>Takeoff<span aria-hidden> ▲</span>
+                  </span>
                 </p>
               )}
               <div className={cn("md:grid md:grid-cols-2 md:gap-16", !reduced && (left ? "" : "md:[&>article]:col-start-2"))}>
