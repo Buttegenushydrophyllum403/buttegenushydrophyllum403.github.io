@@ -73,11 +73,12 @@
     ],
     "gallery": [
       {
-        "alt": "GenieA web admin panel",
+        "src": "/images/projects/GenieA_Admin_Panel.webp",
+        "alt": "GenieA admin panel: a live dashboard with a city map, SOS calls, incidents and case filters",
         "width": 1600,
-        "height": 1000,
+        "height": 911,
         "placeholder": "desktop",
-        "caption": "Admin panel"
+        "caption": "Admin panel: the live dashboard"
       }
     ],
     "storeLinks": [
@@ -146,13 +147,38 @@
     "status": "MVP, in progress",
     "badges": ["Built from scratch", "Microservices", "Play Store", "App Store"],
     "accent": "mint",
-    "cover": { "alt": "HealthStar app home screen", "width": 1080, "height": 2340, "placeholder": "phone" },
+    "cover": {
+      "src": "/images/projects/HealthStar1.png",
+      "alt": "HealthStar: a map of nearby hospitals and blood donors, marked by blood group",
+      "width": 508,
+      "height": 1124,
+      "placeholder": "phone"
+    },
     "screenGroups": [
       {
         "label": "App",
         "screens": [
-          { "alt": "HealthStar app screen 1", "width": 1080, "height": 2340, "placeholder": "phone" },
-          { "alt": "HealthStar app screen 2", "width": 1080, "height": 2340, "placeholder": "phone" }
+          {
+            "src": "/images/projects/HealthStar1.png",
+            "alt": "HealthStar: a map of nearby hospitals and blood donors, marked by blood group",
+            "width": 508,
+            "height": 1124,
+            "placeholder": "phone"
+          },
+          {
+            "src": "/images/projects/HealthStar2.png",
+            "alt": "HealthStar: filtering blood donors by gender, blood group and hospital",
+            "width": 596,
+            "height": 1320,
+            "placeholder": "phone"
+          },
+          {
+            "src": "/images/projects/HealthStar3.png",
+            "alt": "HealthStar: an urgent request broadcasting to matching donors nearby",
+            "width": 522,
+            "height": 1178,
+            "placeholder": "phone"
+          }
         ]
       }
     ],
@@ -160,7 +186,10 @@
       { "store": "play", "href": "https://play.google.com/store/apps/details?id=com.healthstarv3.app&hl=en" },
       { "store": "app" }
     ],
-    "brief": ["HealthStar is an all-in-one healthcare app, available on the Play Store and the App Store."],
+    "brief": [
+      "HealthStar is an all-in-one healthcare app, available on the Play Store and the App Store.",
+      "At its centre is a blood-donor network: a map of nearby hospitals and donors by blood group, donor filters, and urgent requests broadcast to matching donors nearby. Other tabs cover doctors, a health forum and prescriptions."
+    ],
     "myRole": [
       "Built the MVP from scratch: the backend, the mobile app and the admin panel.",
       "Used the same microservice approach as GenieA: FastAPI, NestJS and Go services, Redis, RabbitMQ, Docker and Kubernetes.",
@@ -202,7 +231,7 @@
     "title": "StarWatch",
     "tagline": "Drones built from scratch: sensors for autonomy, AI for mission planning, and live video back to the ground.",
     "org": "Star Technologies",
-    "role": "Project Manager / Developer",
+    "role": "Embedded Systems Engineer",
     "period": "Nov 2025 – Present",
     "category": "robotics",
     "status": "In progress",
@@ -232,7 +261,7 @@
       "The goal is automation: drones that sense their surroundings, plan missions with AI, and stream live video back to the ground."
     ],
     "myRole": [
-      "Project manager and developer.",
+      "Embedded systems engineer.",
       "Flight stack: ArduPilot on the flight controller, talking MAVLink to a ROS-based companion computer.",
       "Autonomy from LiDAR, optical flow and sonar, so the drones can hold position and avoid obstacles without relying on GPS alone.",
       "Live video to the ground station over WebRTC, and AI-based mission planning on top."
@@ -278,13 +307,21 @@
     },
     "gallery": [
       {
-        "alt": "Altair rover robotic arm grasping an object",
-        "width": 1600,
-        "height": 1000,
+        "src": "/images/projects/altair_grabbing.jpg",
+        "alt": "The Altair rover with its robotic arm, on display at an exhibition",
+        "width": 1536,
+        "height": 1920,
         "placeholder": "rover",
-        "kind": "video"
+        "caption": "The rover and its 6-joint arm"
       },
-      { "alt": "Team Altair at competition", "width": 1600, "height": 1000, "placeholder": "rover" }
+      {
+        "src": "/images/projects/altair_comp.jpg",
+        "alt": "Team Altair posing with the Bangladesh flag at a rover competition site",
+        "width": 2048,
+        "height": 1675,
+        "placeholder": "rover",
+        "caption": "Team Altair in the field"
+      }
     ],
     "brief": [
       "Project Altair is IUT's Mars rover team, competing in international rover challenges.",
@@ -350,17 +387,20 @@
     },
     "gallery": [
       {
-        "alt": "Real-time object detection from the drone camera",
-        "width": 1600,
-        "height": 1000,
+        "src": "/images/projects/aero2.jpg",
+        "alt": "A Project Aero quadcopter on the workbench, with its radio controller in hand",
+        "width": 960,
+        "height": 640,
         "placeholder": "drone",
-        "kind": "video"
+        "caption": "Bench test before a flight"
       },
       {
-        "alt": "3D map reconstructed from drone footage",
-        "width": 1600,
-        "height": 1000,
-        "placeholder": "drone"
+        "src": "/images/projects/aero_comp.jpg",
+        "alt": "Project Aero team photo announcing the team's selection for the International Space Drone Challenge 2026 in Udupi, India",
+        "width": 844,
+        "height": 1055,
+        "placeholder": "drone",
+        "caption": "The team, selected for ISDC 2026"
       }
     ],
     "brief": ["Project Aero is a drone team working on flight control, navigation and aerial computer vision."],
@@ -401,7 +441,13 @@
     "category": "ai",
     "badges": ["PEFT/LoRA", "vLLM & llama.cpp", "4/8-bit quantization"],
     "accent": "primary",
-    "cover": { "alt": "Diagram of an offline LLM pipeline", "width": 1600, "height": 1000, "placeholder": "brain" },
+    "cover": {
+      "src": "/images/projects/megamind-pipeline.webp",
+      "alt": "Diagram of the offline LLM pipeline: base LLM, fine-tuning with PEFT/LoRA, 4/8-bit quantization, offline inference with vLLM and llama.cpp, then REST APIs",
+      "width": 2400,
+      "height": 1500,
+      "placeholder": "brain"
+    },
     "brief": [
       "Megamind Tech needed large language models that work offline and fit task-specific applications.",
       "That meant fine-tuning models and squeezing inference into resource-constrained environments."
