@@ -1,0 +1,71 @@
+# Builds the static site and publishes it to GitHub Pages on every push to main.
+# One-time setup: Settings → Pages → Source: "GitHub Actions".
+# The AI twin's chat runs separately as a Cloudflare Worker (npm run twin:deploy).
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SITE_URL: https://rifatsarwarcodes.github.io
+      # Repo variable (Settings → Secrets and variables → Actions → Variables), e.g.
+      # https://rifat-ai-twin.<your-subdomain>.workers.dev/chat
+      NEXT_PUBLIC_CHAT_URL: ${{ vars.CHAT_URL }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+
+  # Optional: keeps the AI twin's knowledge in step with content/ on every push.
+  # Enable by adding repository secrets CLOUDFLARE_API_TOKEN ("Edit Cloudflare Workers" template)
+  # and CLOUDFLARE_ACCOUNT_ID. Without them this job is skipped.
+  twin:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - if: env.CLOUDFLARE_API_TOKEN != ''
+        uses: actions/checkout@v5
+      - if: env.CLOUDFLARE_API_TOKEN != ''
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - if: env.CLOUDFLARE_API_TOKEN != ''
+        run: npm ci && npm run twin:deploy
+      - if: env.CLOUDFLARE_API_TOKEN == ''
+        run: echo "CLOUDFLARE_API_TOKEN not set; skipping the AI twin deploy (run npm run twin:deploy locally instead)."
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
