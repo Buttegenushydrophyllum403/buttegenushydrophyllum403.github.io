@@ -7,12 +7,12 @@ import { Placeholder } from "./Placeholder";
 type SmartMediaProps = {
   media: Media;
   sizes?: string;
-  priority?: boolean;
+  preload?: boolean;
   className?: string;
 };
 
 /** Renders the image or video if a file is set, otherwise a same-size placeholder. */
-export function SmartMedia({ media, sizes = "(min-width: 1024px) 50vw, 100vw", priority, className }: SmartMediaProps) {
+export function SmartMedia({ media, sizes = "(min-width: 1024px) 50vw, 100vw", preload, className }: SmartMediaProps) {
   if (!media.src) return <Placeholder media={media} className={className} />;
 
   if (media.kind === "video") {
@@ -26,7 +26,7 @@ export function SmartMedia({ media, sizes = "(min-width: 1024px) 50vw, 100vw", p
       width={media.width}
       height={media.height}
       sizes={sizes}
-      priority={priority}
+      preload={preload}
       className={cn("h-full w-full object-cover", className)}
     />
   );

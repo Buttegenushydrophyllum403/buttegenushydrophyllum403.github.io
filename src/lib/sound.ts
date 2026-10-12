@@ -2,7 +2,7 @@
  * Tiny synthesized sound effects (Web Audio API). No audio files to download:
  * every sound is a few oscillator notes generated on the fly.
  */
-export type SoundName = "pop" | "click" | "toggleOn" | "toggleOff" | "whoosh" | "sparkle" | "beep" | "send";
+export type SoundName = "pop" | "click" | "toggleOn" | "toggleOff" | "whoosh" | "sparkle" | "beep" | "send" | "print" | "stamp" | "flip";
 
 type Note = { freq: number; endFreq?: number; start: number; duration: number; type?: OscillatorType; gain?: number };
 
@@ -28,6 +28,14 @@ const SOUNDS: Record<SoundName, Note[]> = {
     { freq: 587, start: 0.1, duration: 0.1, type: "square", gain: 0.05 },
   ],
   send: [{ freq: 330, endFreq: 990, start: 0, duration: 0.12, type: "sine", gain: 0.12 }],
+  // Thermal printer chatter: a burst of tiny square-wave ticks.
+  print: Array.from({ length: 22 }, (_, i) => ({ freq: i % 3 === 0 ? 2100 : 1700, start: i * 0.032, duration: 0.012, type: "square" as const, gain: 0.025 })),
+  // Rubber stamp: a low thud with a little slap on top.
+  stamp: [
+    { freq: 140, endFreq: 60, start: 0, duration: 0.12, type: "sine", gain: 0.3 },
+    { freq: 900, endFreq: 300, start: 0, duration: 0.03, type: "triangle", gain: 0.05 },
+  ],
+  flip: [{ freq: 300, endFreq: 520, start: 0, duration: 0.09, type: "triangle", gain: 0.08 }],
 };
 
 let ctx: AudioContext | null = null;

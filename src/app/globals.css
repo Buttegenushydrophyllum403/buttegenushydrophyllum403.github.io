@@ -3,45 +3,63 @@
 /* Dark mode follows the `.dark` class that next-themes puts on <html>. */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ---------- Colour tokens ---------- */
+/*
+ * Two moods, one notebook:
+ *   light = an engineering pad (graph paper, ballpoint ink, red pen, highlighter)
+ *   dark  = a blueprint (cyanotype blue, chalk-white lines)
+ */
 :root {
-  --bg: #fbf8f3;
-  --bg-soft: #f3eee5;
-  --surface: #ffffff;
-  --surface-2: #f6f2ea;
-  --border: #e4ddd0;
-  --text: #1b1f3b;
-  --text-muted: #555c79;
-  --primary: #c8166a; /* hot pink, darkened for contrast on paper */
-  --primary-soft: #fde3ef;
-  --gold: #8f5f00;
-  --gold-bright: #f5b82e;
-  --sky: #0a6aa3;
-  --sky-bright: #3fb6f5;
-  --mint: #08784a;
-  --terrain: #b98a4e;
-  --shadow: 0 1px 2px rgb(27 31 59 / 0.06), 0 8px 24px rgb(27 31 59 / 0.08);
-  --selection: #fbd0e3;
+  --bg: #f4f0e4;
+  --bg-soft: #ebe5d3;
+  --surface: #fffdf6;
+  --surface-2: #f1ecdd;
+  --border: #d6ccb3;
+  --text: #1c2740; /* ballpoint ink */
+  --text-muted: #565d74;
+  --primary: #b8321c; /* red pen */
+  --primary-soft: #f5d8cc;
+  --gold: #835600;
+  --gold-bright: #f4c430;
+  --sky: #1d5aa0; /* blue ink */
+  --sky-bright: #4a8ad8;
+  --mint: #2b6e44;
+  --terrain: #a07246;
+  --grid-minor: rgb(29 90 160 / 0.07);
+  --grid-major: rgb(29 90 160 / 0.13);
+  --highlight: rgb(255 226 64 / 0.75);
+  --ruled: rgb(29 90 160 / 0.16);
+  --tape: rgb(236 222 170 / 0.78);
+  --receipt: #fffefa;
+  --receipt-ink: #2a2a2a;
+  --shadow: 2px 3px 0 rgb(28 39 64 / 0.12), 0 10px 24px -12px rgb(28 39 64 / 0.25);
+  --selection: #ffe58a;
 }
 
 .dark {
-  --bg: #0a0f1f;
-  --bg-soft: #0e1528;
-  --surface: #121a31;
-  --surface-2: #18223d;
-  --border: #243152;
-  --text: #e9edf7;
-  --text-muted: #a3adc9;
-  --primary: #ff5fa2;
-  --primary-soft: #3a1630;
-  --gold: #ffcc4d;
-  --gold-bright: #ffcc4d;
-  --sky: #6fd0ff;
-  --sky-bright: #6fd0ff;
-  --mint: #5cf2a8;
-  --terrain: #d7a86e;
-  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 12px 32px rgb(0 0 0 / 0.35);
-  --selection: #5b1f44;
+  --bg: #0f2c52;
+  --bg-soft: #0c2546;
+  --surface: #133561;
+  --surface-2: #183e6e;
+  --border: #3a6398;
+  --text: #edf4ff;
+  --text-muted: #a9c3e6;
+  --primary: #ff9a7a; /* chalk red */
+  --primary-soft: #3b2d4b;
+  --gold: #ffd76a;
+  --gold-bright: #ffd76a;
+  --sky: #9ad8ff;
+  --sky-bright: #9ad8ff;
+  --mint: #8ff0bd;
+  --terrain: #e1b886;
+  --grid-minor: rgb(255 255 255 / 0.05);
+  --grid-major: rgb(255 255 255 / 0.11);
+  --highlight: rgb(255 215 106 / 0.32);
+  --ruled: rgb(255 255 255 / 0.1);
+  --tape: rgb(255 255 255 / 0.18);
+  --receipt: #f3f1ea;
+  --receipt-ink: #222;
+  --shadow: 2px 3px 0 rgb(0 0 0 / 0.28), 0 14px 30px -14px rgb(0 0 0 / 0.6);
+  --selection: #5c4a1f;
 }
 
 @theme inline {
@@ -64,22 +82,14 @@
   --font-sans: var(--font-body);
   --font-display: var(--font-heading);
   --font-mono: var(--font-code);
+  --font-hand: var(--font-handwriting);
+  --font-bangla: var(--font-bengali);
 
   --shadow-card: var(--shadow);
 
   --animate-float: float 4s ease-in-out infinite;
   --animate-blink: blink 1s steps(2, start) infinite;
-}
-
-@keyframes sparkle-grow {
-  0% { transform: scale(0); }
-  50% { transform: scale(1); }
-  100% { transform: scale(0); }
-}
-
-@keyframes sparkle-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(180deg); }
+  --animate-ticker: ticker 60s linear infinite;
 }
 
 @keyframes float {
@@ -89,6 +99,10 @@
 
 @keyframes blink {
   to { visibility: hidden; }
+}
+
+@keyframes ticker {
+  to { transform: translateX(-50%); }
 }
 
 /* ---------- Base (layered so utilities can override) ---------- */
@@ -102,7 +116,15 @@
   }
 
   body {
-    background: var(--bg);
+    background-color: var(--bg);
+    /* Graph paper: 8px minor squares, 40px major squares. On dark it reads as a blueprint. */
+    background-image:
+      linear-gradient(var(--grid-major) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
+      linear-gradient(var(--grid-minor) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px);
+    background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px;
+    background-position: -1px -1px;
     color: var(--text);
     font-family: var(--font-body), system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -114,8 +136,10 @@
   }
 
   h1, h2, h3, h4 {
-    font-family: var(--font-heading), system-ui, sans-serif;
-    letter-spacing: -0.02em;
+    font-family: var(--font-heading), Georgia, serif;
+    font-weight: 400;
+    font-synthesis: none;
+    letter-spacing: -0.01em;
     text-wrap: balance;
   }
 
@@ -124,9 +148,9 @@
   }
 
   :focus-visible {
-    outline: 3px solid var(--sky-bright);
+    outline: 2px dashed var(--primary);
     outline-offset: 3px;
-    border-radius: 6px;
+    border-radius: 2px;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -158,19 +182,71 @@
 @utility eyebrow {
   font-family: var(--font-code), ui-monospace, monospace;
   font-size: 0.75rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
 
-@utility text-gradient {
-  background: linear-gradient(100deg, var(--primary), var(--gold-bright) 55%, var(--sky-bright));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* A highlighter stroke, slightly uneven, that wraps across lines. */
+@utility hl {
+  background-image: linear-gradient(100deg, transparent 0.25em, var(--highlight) 0.4em, var(--highlight) calc(100% - 0.4em), transparent calc(100% - 0.2em));
+  background-size: 100% 0.62em;
+  background-position: 0 88%;
+  background-repeat: no-repeat;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding-inline: 0.12em;
 }
 
-@utility grid-dots {
-  background-image: radial-gradient(color-mix(in oklab, var(--text) 14%, transparent) 1px, transparent 1px);
-  background-size: 22px 22px;
+/* Red-pen strikethrough, for corrections. */
+@utility struck {
+  text-decoration-line: line-through;
+  text-decoration-color: var(--primary);
+  text-decoration-thickness: 0.09em;
+  color: var(--text-muted);
+}
+
+/* A strip of masking tape. Position it yourself. */
+@utility tape {
+  position: absolute;
+  height: 1.6rem;
+  width: 6.5rem;
+  background: var(--tape);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
+  mask-image: linear-gradient(90deg, transparent 0 2px, #000 2px calc(100% - 2px), transparent calc(100% - 2px)),
+    repeating-linear-gradient(0deg, #000 0 3px, transparent 3px 4px);
+  mask-composite: add;
+}
+
+/* Rubber stamp: double border, slightly patchy ink. */
+@utility stamp {
+  display: inline-block;
+  border: 3px double currentColor;
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
+  font-family: var(--font-code), ui-monospace, monospace;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 1.75'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Index card: ruled blue lines under a red header rule. */
+@utility index-card {
+  background-color: var(--surface);
+  background-image:
+    linear-gradient(var(--primary), var(--primary)),
+    repeating-linear-gradient(to bottom, transparent 0 1.6rem, var(--ruled) 1.6rem calc(1.6rem + 1px));
+  background-size: 100% 1px, 100% 100%;
+  background-position: 0 3.1rem, 0 3.1rem;
+  background-repeat: no-repeat, no-repeat;
+}
+
+/* Torn thermal-paper edges, top and bottom. */
+@utility receipt-edges {
+  --tooth: 9px;
+  mask:
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% 100% / calc(var(--tooth) * 2) var(--tooth) repeat-x,
+    conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) 50% 0 / calc(var(--tooth) * 2) var(--tooth) repeat-x,
+    linear-gradient(#000, #000) 0 50% / 100% calc(100% - var(--tooth) * 2 + 1px) no-repeat;
 }
