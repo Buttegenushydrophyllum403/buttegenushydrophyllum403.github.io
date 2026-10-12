@@ -14,9 +14,23 @@ describe("AI twin knowledge base", () => {
     expect(kb).toContain("1st in the Science Task");
     expect(kb).toContain("16th globally");
     expect(kb).toContain("University Rover Challenge (URC): Competed");
-    expect(kb).toContain("10K+ downloads");
+    expect(kb).toContain("10K+ user base");
+    expect(kb).toContain("pass@1 = 0.92");
+    expect(kb).toContain("+0.090 mIoU");
+    expect(kb).toContain("Dr. Md. Hasanul Kabir");
     expect(kb).toContain("CGPA 3.78 / 4.00");
     expect(kb).toContain("Sylhet Metropolitan Police");
+  });
+
+  it("lists every paper's authors as printed on the PDF", () => {
+    const kb = buildKnowledge();
+    expect(kb).toContain("Authors: Fairuz Khan, Rifat Sarwar, Wasif Uddin.");
+    expect(kb).toContain("Authors: Khandakar Shakib Al Hasan, Md. Rifat Sarwar, Meftahul Jannati Anonna, Wasif Uddin.");
+    expect(kb).toContain("Nowshin Mahjabin, Nufsat Farooque");
+  });
+
+  it("leaves the changelog jokes out of the facts", () => {
+    expect(buildKnowledge()).not.toContain("low-traffic windows");
   });
 
   it("never includes the phone number", () => {

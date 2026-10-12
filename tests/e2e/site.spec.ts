@@ -1,13 +1,19 @@
 import { expect, test } from "@playwright/test";
+// Expected text comes from the content files, so editing copy doesn't break these tests.
+import errors from "../../content/errors.json";
+import home from "../../content/home.json";
+import projectsPage from "../../content/projects-page.json";
+import site from "../../content/site.json";
 
 const SLUGS = ["genie-a", "health-star", "star-watch", "project-altair", "project-aero", "megamind-llm"];
 
 test("home page renders the key sections", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Rifat");
-  await expect(page.getByRole("heading", { name: "From rovers to rotors" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Scoreboard" })).toBeVisible();
-  await expect(page.locator("#journey ol > li")).toHaveCount(7);
+  for (const section of [home.sections.changelog, home.sections.awards, home.sections.research]) {
+    await expect(page.getByRole("heading", { name: section.title })).toBeVisible();
+  }
+  await expect(page.locator("#changelog ol > li")).toHaveCount(7);
 });
 
 test("every case study page renders", async ({ page }) => {
@@ -15,17 +21,13 @@ test("every case study page renders", async ({ page }) => {
     const res = await page.goto(`/projects/${slug}`);
     expect(res?.status()).toBe(200);
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.getByRole("heading", { name: /Mission brief/ })).toBeVisible();
+    await expect(page.getByRole("heading", { name: projectsPage.caseStudy.sections.brief })).toBeVisible();
   }
 });
 
 test("main navigation works", async ({ page, isMobile }) => {
   await page.goto("/");
-  for (const [label, path] of [
-    ["Projects", "/projects"],
-    ["About", "/about"],
-    ["Contact", "/contact"],
-  ] as const) {
+  for (const { label, href: path } of site.nav.filter((n) => !n.href.includes("#"))) {
     if (isMobile) await page.getByRole("button", { name: "Open menu" }).click();
     const nav = page.getByRole("navigation", { name: isMobile ? "Mobile" : "Main" });
     await nav.getByRole("link", { name: label, exact: true }).click();
@@ -43,23 +45,29 @@ test("theme toggle persists across reloads and is applied before paint", async (
   await expect(page.locator("html")).toHaveClass(/dark/);
 });
 
-test("reduced motion swaps the journey animation for a plain list", async ({ page }) => {
+test("reduced motion turns sounds off", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await expect(page.locator("#journey ol")).toHaveClass(/list-decimal/);
   await expect(page.getByRole("button", { name: /Sounds are off because reduced motion/ })).toBeDisabled();
 });
 
 test("unknown routes show the lost-rover 404", async ({ page }) => {
   const res = await page.goto("/this-does-not-exist");
   expect(res?.status()).toBe(404);
-  await expect(page.getByRole("heading", { name: /rover wandered off the map/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: errors.notFound.title })).toBeVisible();
 });
 
 test("/cv redirects to the PDF", async ({ request }) => {
   const res = await request.get("/cv", { maxRedirects: 0 });
   expect([307, 308]).toContain(res.status());
-  expect(res.headers()["location"]).toContain("/cv/rifat-sarwar-cv.pdf");
+  expect(res.headers()["location"]).toContain("/cv/rifat_sarwar_cv.pdf");
+});
+
+test("the headshot flips over to show the back", async ({ page }) => {
+  await page.goto("/");
+  const photo = page.getByRole("button", { name: site.photoHint.flip });
+  await photo.click();
+  await expect(page.getByRole("button", { name: site.photoHint.flipBack })).toHaveAttribute("aria-pressed", "true");
 });
 
 test("sitemap and robots are generated", async ({ request }) => {

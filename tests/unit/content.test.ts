@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { profile, projects, type Media } from "@/content";
+import { profile, projects, research, type Media } from "@/content";
 
 const publicDir = join(process.cwd(), "public");
 
@@ -24,6 +24,10 @@ describe("content", () => {
       ])
       .filter(Boolean);
     expect(missing).toEqual([]);
+  });
+
+  it("every paper PDF exists", () => {
+    expect(research.filter((p) => !existsSync(join(publicDir, p.pdf))).map((p) => p.pdf)).toEqual([]);
   });
 
   it("the CV file exists", () => {

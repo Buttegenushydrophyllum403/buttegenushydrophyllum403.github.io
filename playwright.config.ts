@@ -22,6 +22,6 @@ export default defineConfig({
     url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,
     timeout: 240_000,
-    env: { CHAT_MOCK: "1", CONTACT_DRY_RUN: "1", NEXT_PUBLIC_SITE_URL: `http://localhost:${PORT}` },
+    env: { CHAT_MOCK: "1", NEXT_PUBLIC_SITE_URL: `http://localhost:${PORT}` },
   },
 });
