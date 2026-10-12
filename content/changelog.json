@@ -63,13 +63,31 @@
     "projectSlug": "project-aero"
   },
   {
-    "id": "star-technologies",
+    "id": "star-watch",
     "version": "1.0.0",
+    "period": "Nov 2025 – Present",
+    "org": "StarWatch",
+    "orgNote": "under Star Technologies",
+    "role": "Embedded Systems Engineer",
+    "kind": "work",
+    "summary": "Building drone systems from scratch. This time the only judge is gravity.",
+    "highlights": [
+      "MAVLink, ROS, ArduPilot and WebRTC video streaming",
+      "Autonomy from LiDAR, optical flow and sonar",
+      "AI-based mission planning"
+    ],
+    "knownIssues": "Has started saying “ground truth” and meaning the actual ground.",
+    "projectSlug": "star-watch",
+    "current": true
+  },
+  {
+    "id": "star-technologies",
+    "version": "1.1.0",
     "period": "Mar 2025 – Present",
     "org": "Star Technologies",
     "role": "Senior Software Engineer",
     "kind": "work",
-    "summary": "First stable release. Breaking change: now responsible for production.",
+    "summary": "Breaking change: now responsible for production.",
     "highlights": [
       "Own backend architecture end to end: system design, API contracts, deployment and monitoring",
       "Microservices in FastAPI, NestJS, Go and Spring Boot on AWS (ECS/EKS), with Docker, Kubernetes and Terraform",
@@ -81,24 +99,6 @@
     ],
     "knownIssues": "Refers to weekends as “low-traffic windows”.",
     "projectSlug": "genie-a",
-    "current": true
-  },
-  {
-    "id": "star-watch",
-    "version": "1.1.0",
-    "period": "Nov 2025 – Present",
-    "org": "StarWatch",
-    "orgNote": "under Star Technologies",
-    "role": "Project Manager / Developer",
-    "kind": "work",
-    "summary": "Building drone systems from scratch. This time the only judge is gravity.",
-    "highlights": [
-      "MAVLink, ROS, ArduPilot and WebRTC video streaming",
-      "Autonomy from LiDAR, optical flow and sonar",
-      "AI-based mission planning"
-    ],
-    "knownIssues": "Has started saying “ground truth” and meaning the actual ground.",
-    "projectSlug": "star-watch",
     "current": true
   }
 ]
