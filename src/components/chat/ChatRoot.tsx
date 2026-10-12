@@ -1,17 +1,17 @@
 "use client";
 
-import { Bot } from "lucide-react";
+import { MessageSquareText } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import dynamic from "next/dynamic";
 import { useEffect, useRef } from "react";
-import { Boop } from "@/components/effects/Boop";
 import { useSound } from "@/components/effects/SoundProvider";
+import type { ChatUiCopy } from "@/content";
 import { useChat } from "./ChatProvider";
 
 const ChatPanel = dynamic(() => import("./ChatPanel"), { ssr: false });
 
 /** Floating launcher + lazily loaded chat panel, mounted once in the root layout. */
-export function ChatRoot() {
+export function ChatRoot({ copy }: { copy: ChatUiCopy }) {
   const { open, openChat } = useChat();
   const { play } = useSound();
   const launcherRef = useRef<HTMLButtonElement>(null);
@@ -43,19 +43,15 @@ export function ChatRoot() {
               play("whoosh");
               openChat();
             }}
-            className="group fixed right-4 bottom-4 z-40 flex items-center gap-2 rounded-full bg-gradient-to-br from-primary to-[color-mix(in_oklab,var(--primary),var(--gold-bright)_45%)] py-3 pr-5 pl-3.5 font-semibold text-white shadow-xl sm:right-6 sm:bottom-6 dark:text-bg"
+            className="group fixed right-4 bottom-4 z-40 flex items-center gap-2 border-2 border-text bg-text py-2.5 pr-4 pl-3 font-semibold text-bg shadow-[4px_4px_0_var(--primary)] transition-transform hover:-translate-y-0.5 sm:right-6 sm:bottom-6"
             aria-label="Chat with Rifat's AI twin"
           >
-            <Boop rotation={20} scale={1.1} timing={200} sound="beep">
-              <span className="grid size-8 place-items-center rounded-full bg-white/20">
-                <Bot size={19} aria-hidden />
-              </span>
-            </Boop>
-            <span className="hidden sm:inline">Ask my AI twin</span>
+            <MessageSquareText size={19} aria-hidden className="transition-transform group-hover:-rotate-12" />
+            <span className="hidden sm:inline">{copy.launcher}</span>
           </motion.button>
         )}
       </AnimatePresence>
-      <AnimatePresence>{open && <ChatPanel key="chat" />}</AnimatePresence>
+      <AnimatePresence>{open && <ChatPanel key="chat" copy={copy} />}</AnimatePresence>
     </>
   );
 }

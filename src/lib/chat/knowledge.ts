@@ -1,4 +1,4 @@
-import { achievements, journey, profile, projects, skillGroups } from "@/content";
+import { achievements, journey, profile, projects, research, skillGroups } from "@/content";
 
 /**
  * Turns the site content into the AI twin's knowledge base.
@@ -22,6 +22,7 @@ export function buildKnowledge(): string {
     "",
     "## Education",
     `${profile.education.degree}, ${profile.education.school} (${profile.education.schoolShort}), ${profile.education.period}, CGPA ${profile.education.cgpa}. Graduated in 2026.`,
+    "(The site presents this career as a playful CHANGELOG with joke \"known issues\"; those jokes are not facts.)",
     "",
     "## Career journey (chronological)",
   );
@@ -55,6 +56,17 @@ export function buildKnowledge(): string {
       ...(p.sideways?.length ? ["What went sideways:", ...p.sideways.map((s) => `- ${s}`)] : []),
       ...p.storeLinks.filter((s) => s.href).map((s) => `${s.store === "play" ? "Google Play" : "App Store"}: ${s.href}`),
       ...(p.storeLinks.some((s) => !s.href) ? ["Also on the App Store (link not listed here yet)."] : []),
+      "",
+    );
+  }
+
+  push("## Research (all 2026)");
+  for (const r of research) {
+    push(
+      `### ${r.title}`,
+      `${r.venue}${r.note ? `. ${r.note}` : ""}.${r.authors ? ` Authors: ${r.authors.join(", ")}.` : ""} Full PDF: ${r.pdf}`,
+      ...r.points.map((pt) => `- ${pt}`),
+      `In one line: ${r.tldr}`,
       "",
     );
   }

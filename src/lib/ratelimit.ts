@@ -28,6 +28,10 @@ function createLimiter(prefix: string, max: number, window: Duration): Limiter {
   return memoryLimiter(max, Number(amount) * MS[unit]);
 }
 
-export const chatPerMinute = createLimiter("chat-m", 8, "1 m");
-export const chatPerDay = createLimiter("chat-d", 40, "1 d");
-export const contactLimiter = createLimiter("contact", 3, "10 m");
+/** Local development (npm run dev) isn't limited: one person testing would burn through a visitor's daily allowance. */
+const unlimited: Limiter = { limit: async () => ({ success: true, reset: Date.now() }) };
+const enforce = process.env.NODE_ENV === "production";
+
+/** Per-visitor chat limits. Override with CHAT_LIMIT_PER_MINUTE / CHAT_LIMIT_PER_DAY. */
+export const chatPerMinute = enforce ? createLimiter("chat-m", Number(process.env.CHAT_LIMIT_PER_MINUTE ?? 8), "1 m") : unlimited;
+export const chatPerDay = enforce ? createLimiter("chat-d", Number(process.env.CHAT_LIMIT_PER_DAY ?? 40), "1 d") : unlimited;

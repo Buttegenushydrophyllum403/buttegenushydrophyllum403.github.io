@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { RESTART } from "@/lib/chat/protocol";
 import type { ChatMessage } from "@/lib/chat/validate";
 
 const STORAGE_KEY = "rs-chat-history";
@@ -17,7 +18,7 @@ function loadHistory(): ChatMessage[] {
 
 export type ChatStatus = "idle" | "waiting" | "streaming";
 
-export function useChatStream() {
+export function useChatStream(copy: { connectionLost: string; stopped: string }) {
   const [messages, setMessages] = useState<ChatMessage[]>(loadHistory);
   const [status, setStatus] = useState<ChatStatus>("idle");
   const abortRef = useRef<AbortController | null>(null);
@@ -51,7 +52,10 @@ export function useChatStream() {
         setMessages((current) => {
           const next = current.slice();
           const last = next[next.length - 1];
-          next[next.length - 1] = { ...last, content: last.content + chunk };
+          // RESTART: the server is retrying this reply from scratch, so drop what has arrived so far.
+          const restartAt = chunk.lastIndexOf(RESTART);
+          const content = restartAt === -1 ? last.content + chunk : chunk.slice(restartAt + 1);
+          next[next.length - 1] = { ...last, content };
           return next;
         });
 
@@ -76,14 +80,14 @@ export function useChatStream() {
         }
       } catch (err) {
         if ((err as Error).name !== "AbortError") {
-          append("My connection to the mothership dropped. Try again?");
+          append(copy.connectionLost);
         }
       } finally {
         setMessages((current) => {
           const last = current[current.length - 1];
           // A stopped reply with no text becomes a short note so turns keep alternating.
           if (last?.role === "assistant" && !last.content.trim()) {
-            return [...current.slice(0, -1), { role: "assistant", content: "(stopped)" }];
+            return [...current.slice(0, -1), { role: "assistant", content: copy.stopped }];
           }
           return current;
         });
@@ -91,7 +95,7 @@ export function useChatStream() {
         setStatus("idle");
       }
     },
-    [messages, status],
+    [messages, status, copy.connectionLost, copy.stopped],
   );
 
   const stop = useCallback(() => abortRef.current?.abort(), []);

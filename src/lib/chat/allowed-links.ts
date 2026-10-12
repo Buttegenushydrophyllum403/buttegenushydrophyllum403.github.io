@@ -4,6 +4,8 @@ export const ALLOWED_LINK_PREFIXES = [
   "/contact",
   "/about",
   "/cv",
+  "/papers/",
+  "https://github.com/rifatsarwarcodes",
   "https://www.linkedin.com/in/rifatsarwar",
   "https://play.google.com/store/apps/details?id=com.startechnologies.genie_a",
   "https://play.google.com/store/apps/details?id=com.healthstarv3.app",
