@@ -24,7 +24,7 @@ export function PhoneMockup({ groups, title }: { groups: Project["screenGroups"]
   return (
     <div className="flex flex-col items-center gap-5">
       {groups.length > 1 && (
-        <div role="tablist" aria-label={`${title} apps`} className="inline-flex rounded-full border border-border bg-surface p-1">
+        <div role="tablist" aria-label={`${title} apps`} className="inline-flex border-2 border-text bg-surface">
           {groups.map((g, i) => (
             <button
               key={g.label}
@@ -37,8 +37,8 @@ export function PhoneMockup({ groups, title }: { groups: Project["screenGroups"]
                 setScreenIndex(0);
               }}
               className={cn(
-                "rounded-full px-4 py-1.5 text-sm font-semibold transition-colors",
-                i === groupIndex ? "bg-primary text-white dark:text-bg" : "text-muted hover:text-text",
+                "px-4 py-1.5 font-mono text-sm transition-colors",
+                i === groupIndex ? "bg-text text-bg" : "text-muted hover:text-text",
               )}
             >
               {g.label}
@@ -73,13 +73,13 @@ export function PhoneMockup({ groups, title }: { groups: Project["screenGroups"]
 
       {screens.length > 1 && (
         <div className="flex items-center gap-3">
-          <button type="button" onClick={() => go(-1)} className="grid size-9 place-items-center rounded-full border border-border hover:border-primary" aria-label="Previous screenshot">
+          <button type="button" onClick={() => go(-1)} className="grid size-9 place-items-center border-2 border-text hover:text-primary" aria-label="Previous screenshot">
             <ChevronLeft size={18} />
           </button>
           <p className="font-mono text-xs text-muted" aria-live="polite">
             {screenIndex + 1} / {screens.length}
           </p>
-          <button type="button" onClick={() => go(1)} className="grid size-9 place-items-center rounded-full border border-border hover:border-primary" aria-label="Next screenshot">
+          <button type="button" onClick={() => go(1)} className="grid size-9 place-items-center border-2 border-text hover:text-primary" aria-label="Next screenshot">
             <ChevronRight size={18} />
           </button>
         </div>

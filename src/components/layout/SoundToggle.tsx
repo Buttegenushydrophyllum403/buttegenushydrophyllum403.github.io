@@ -15,7 +15,7 @@ export function SoundToggle() {
       type="button"
       onClick={toggleMuted}
       disabled={forcedOff}
-      className="grid size-10 place-items-center rounded-full text-text transition-colors hover:bg-surface-2 disabled:opacity-50"
+      className="grid size-10 place-items-center text-text transition-colors hover:text-primary disabled:opacity-50"
       aria-label={forcedOff ? "Sounds are off because reduced motion is on" : showMuted ? "Turn sounds on" : "Mute sounds"}
       aria-pressed={!showMuted}
       title={forcedOff ? "Sounds off (reduced motion)" : showMuted ? "Sounds off" : "Sounds on"}

@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { profile } from "@/content";
+import { profile, siteCopy } from "@/content";
 import { OG_SIZE, OgCard } from "@/lib/og";
 
 export const alt = `${profile.name}: ${profile.title} | ${profile.specialties}`;
@@ -10,10 +10,10 @@ export default function Image() {
   return new ImageResponse(
     (
       <OgCard
-        eyebrow="Systems online"
+        eyebrow={siteCopy.ogImage.eyebrow}
         title={profile.name}
-        subtitle={`${profile.title} · ${profile.specialties}. Apps with 10K+ downloads, a Mars rover ranked 6th globally, and drones built from scratch.`}
-        footer="Chat with my AI twin →"
+        subtitle={siteCopy.ogImage.subtitle}
+        footer={siteCopy.ogImage.footer}
       />
     ),
     size,

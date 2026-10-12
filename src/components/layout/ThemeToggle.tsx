@@ -5,9 +5,10 @@ import { AnimatePresence, motion } from "motion/react";
 import { useTheme } from "next-themes";
 import { Boop } from "@/components/effects/Boop";
 import { useSound } from "@/components/effects/SoundProvider";
+import type { SiteCopy } from "@/content";
 import { useIsClient } from "@/hooks/useIsClient";
 
-export function ThemeToggle() {
+export function ThemeToggle({ copy }: { copy: SiteCopy["theme"] }) {
   const { resolvedTheme, setTheme } = useTheme();
   const { play } = useSound();
   const isClient = useIsClient();
@@ -20,9 +21,9 @@ export function ThemeToggle() {
         setTheme(isDark ? "light" : "dark");
         play(isDark ? "toggleOn" : "toggleOff");
       }}
-      className="grid size-10 place-items-center rounded-full text-text transition-colors hover:bg-surface-2"
+      className="grid size-10 place-items-center text-text transition-colors hover:text-primary"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      title={isDark ? "Light mode" : "Dark mode"}
+      title={isDark ? copy.toPaper : copy.toBlueprint}
     >
       <Boop rotation={isDark ? -25 : 25} timing={200}>
         {!isClient ? (

@@ -7,17 +7,17 @@ import { accentTextVar, accentVar } from "@/lib/utils";
 export function ArchitectureDiagram({ architecture, accent }: { architecture: NonNullable<Project["architecture"]>; accent: Project["accent"] }) {
   const color = accentVar[accent];
   return (
-    <figure className="rounded-3xl border border-border bg-surface p-5 sm:p-7">
+    <figure className="border-2 border-text bg-surface p-5 sm:p-7">
       <div className="flex flex-col items-stretch gap-3 md:flex-row md:items-center">
         {architecture.stages.map((stage, i) => (
           <Fragment key={stage.label}>
-            <div className="flex-1 rounded-2xl border border-dashed p-4" style={{ borderColor: color }}>
+            <div className="flex-1 border border-dashed p-4" style={{ borderColor: color }}>
               <p className="eyebrow mb-3" style={{ color: accentTextVar[accent] }}>
                 {String(i + 1).padStart(2, "0")} · {stage.label}
               </p>
               <ul className="space-y-2">
                 {stage.nodes.map((node) => (
-                  <li key={node} className="rounded-xl bg-surface-2 px-3 py-2 text-sm font-medium">
+                  <li key={node} className="border border-border bg-surface-2 px-3 py-2 font-mono text-sm">
                     {node}
                   </li>
                 ))}
@@ -32,7 +32,7 @@ export function ArchitectureDiagram({ architecture, accent }: { architecture: No
           </Fragment>
         ))}
       </div>
-      <figcaption className="mt-4 text-center text-sm text-muted">{architecture.caption}</figcaption>
+      <figcaption className="mt-4 text-center font-hand text-lg text-primary">fig. — {architecture.caption}</figcaption>
     </figure>
   );
 }

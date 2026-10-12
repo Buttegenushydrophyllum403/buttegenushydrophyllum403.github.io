@@ -1,24 +1,30 @@
 "use client";
 
-import { Bot, Menu, X } from "lucide-react";
+import { Menu, MessageSquareText, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ChatButton } from "@/components/chat/ChatButton";
-import { Boop } from "@/components/effects/Boop";
+import type { SiteCopy } from "@/content";
 import { cn } from "@/lib/utils";
 import { SoundToggle } from "./SoundToggle";
 import { ThemeToggle } from "./ThemeToggle";
 
-const NAV = [
-  { href: "/projects", label: "Projects" },
-  { href: "/#journey", label: "Journey" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
 
-export function Header() {
+export function Header({
+  name,
+  version,
+  nav,
+  copy,
+  themeCopy,
+}: {
+  name: string;
+  version: string;
+  nav: SiteCopy["nav"];
+  copy: SiteCopy["header"];
+  themeCopy: SiteCopy["theme"];
+}) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [lastPath, setLastPath] = useState(pathname);
@@ -37,50 +43,44 @@ export function Header() {
   }, [menuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-bg/80 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b-2 border-text bg-bg/90 backdrop-blur-sm">
       <div className="container-page flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="group flex items-center gap-2.5 font-display text-lg font-bold" aria-label="Rifat Sarwar, home">
-          <Boop rotation={-12} scale={1.08} sound="pop">
-            <span className="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-primary to-gold-bright font-mono text-sm font-bold text-white shadow-card">
-              RS
-            </span>
-          </Boop>
-          <span className="hidden sm:inline">Rifat Sarwar</span>
+        <Link href="/" className="group flex items-baseline gap-2" aria-label={`${name}, home`}>
+          <span className="font-hand text-2xl font-bold transition-transform group-hover:-rotate-2">{name}</span>
+          <span className="font-mono text-[0.68rem] text-muted" title={copy.versionTitle}>
+            v{version}
+          </span>
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
-          {NAV.map((item) => {
-            const active = item.href !== "/#journey" && pathname.startsWith(item.href);
+          {nav.map((item) => {
+            const active = !item.href.startsWith("/#") && pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "rounded-full px-3.5 py-2 text-[0.95rem] font-medium transition-colors hover:bg-surface-2",
-                  active ? "text-primary" : "text-text",
+                  "px-3 py-2 text-[0.95rem] font-medium underline-offset-[6px] transition-colors hover:text-primary hover:underline hover:decoration-wavy hover:decoration-primary",
+                  active && "text-primary underline decoration-wavy decoration-primary",
                 )}
               >
-                <Boop y={-2} timing={120}>
-                  {item.label}
-                </Boop>
+                {item.label}
               </Link>
             );
           })}
-          <ChatButton className="ml-1 inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3.5 py-2 text-[0.95rem] font-semibold shadow-card transition-colors hover:border-primary">
-            <Boop rotation={15} timing={150}>
-              <Bot size={17} className="text-primary" aria-hidden />
-            </Boop>
-            AI twin
+          <ChatButton className="ml-2 inline-flex items-center gap-1.5 border-2 border-text px-3 py-1.5 text-[0.95rem] font-semibold transition-shadow hover:shadow-[3px_3px_0_var(--primary)]">
+            <MessageSquareText size={16} className="text-primary" aria-hidden />
+            {copy.twinButton}
           </ChatButton>
         </nav>
 
         <div className="flex items-center gap-0.5">
           <SoundToggle />
-          <ThemeToggle />
+          <ThemeToggle copy={themeCopy} />
           <button
             type="button"
-            className="grid size-10 place-items-center rounded-full hover:bg-surface-2 md:hidden"
+            className="grid size-10 place-items-center hover:bg-surface-2 md:hidden"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
@@ -99,19 +99,19 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-t border-border bg-bg md:hidden"
+            className="overflow-hidden border-t border-dashed border-border bg-bg md:hidden"
           >
             <ul className="container-page flex flex-col gap-1 py-3">
-              {NAV.map((item) => (
+              {nav.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} onClick={() => setMenuOpen(false)} className="block rounded-xl px-3 py-3 text-lg font-medium hover:bg-surface-2">
+                  <Link href={item.href} onClick={() => setMenuOpen(false)} className="block px-3 py-3 font-display text-xl hover:text-primary">
                     {item.label}
                   </Link>
                 </li>
               ))}
               <li>
-                <ChatButton className="flex w-full items-center gap-2 rounded-xl px-3 py-3 text-left text-lg font-semibold text-primary hover:bg-surface-2">
-                  <Bot size={20} aria-hidden /> Chat with my AI twin
+                <ChatButton className="flex w-full items-center gap-2 px-3 py-3 text-left font-display text-xl text-primary">
+                  <MessageSquareText size={20} aria-hidden /> {copy.mobileTwinButton}
                 </ChatButton>
               </li>
             </ul>

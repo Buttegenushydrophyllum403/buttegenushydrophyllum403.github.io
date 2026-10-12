@@ -1,6 +1,7 @@
 /** Shared layout for generated Open Graph images (rendered by next/og, so inline styles only). */
 export const OG_SIZE = { width: 1200, height: 630 };
 
+/** Graph paper, ink, and one line of red pen. Matches the site's light theme. */
 export function OgCard({ eyebrow, title, subtitle, footer }: { eyebrow: string; title: string; subtitle: string; footer: string }) {
   return (
     <div
@@ -11,36 +12,21 @@ export function OgCard({ eyebrow, title, subtitle, footer }: { eyebrow: string; 
         flexDirection: "column",
         justifyContent: "space-between",
         padding: 72,
-        background: "#0a0f1f",
-        backgroundImage: "radial-gradient(circle at 85% 15%, rgba(255,95,162,0.35), transparent 45%), radial-gradient(circle at 10% 90%, rgba(111,208,255,0.25), transparent 40%)",
-        color: "#e9edf7",
-        fontFamily: "sans-serif",
+        background: "#f4f0e4",
+        backgroundImage:
+          "linear-gradient(rgba(29,90,160,0.13) 1px, transparent 1px), linear-gradient(90deg, rgba(29,90,160,0.13) 1px, transparent 1px)",
+        backgroundSize: "40px 40px",
+        color: "#1c2740",
+        fontFamily: "serif",
+        borderLeft: "10px solid #b8321c",
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-        <div
-          style={{
-            display: "flex",
-            width: 64,
-            height: 64,
-            borderRadius: 18,
-            alignItems: "center",
-            justifyContent: "center",
-            background: "linear-gradient(135deg, #ff5fa2, #ffcc4d)",
-            color: "white",
-            fontSize: 28,
-            fontWeight: 700,
-          }}
-        >
-          RS
-        </div>
-        <div style={{ display: "flex", fontSize: 26, letterSpacing: 4, color: "#5cf2a8", textTransform: "uppercase" }}>● {eyebrow}</div>
-      </div>
+      <div style={{ display: "flex", fontSize: 26, letterSpacing: 3, color: "#b8321c", textTransform: "uppercase", fontFamily: "monospace" }}>§ {eyebrow}</div>
       <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-        <div style={{ display: "flex", fontSize: 84, fontWeight: 800, lineHeight: 1.05, letterSpacing: -2 }}>{title}</div>
-        <div style={{ display: "flex", fontSize: 36, color: "#a3adc9", lineHeight: 1.3, maxWidth: 1000 }}>{subtitle}</div>
+        <div style={{ display: "flex", fontSize: 92, lineHeight: 1.02, letterSpacing: -1 }}>{title}</div>
+        <div style={{ display: "flex", fontSize: 34, color: "#565d74", lineHeight: 1.3, maxWidth: 1000, fontFamily: "sans-serif" }}>{subtitle}</div>
       </div>
-      <div style={{ display: "flex", fontSize: 26, color: "#ffcc4d" }}>{footer}</div>
+      <div style={{ display: "flex", fontSize: 26, fontFamily: "monospace", color: "#1c2740", borderTop: "2px solid #1c2740", paddingTop: 16 }}>{footer}</div>
     </div>
   );
 }

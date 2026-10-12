@@ -3,9 +3,8 @@
 import { Check, Copy } from "lucide-react";
 import { useState } from "react";
 import { useSound } from "@/components/effects/SoundProvider";
-import { SparkleStar } from "@/components/effects/Sparkles";
 
-export function CopyEmail({ email }: { email: string }) {
+export function CopyEmail({ email, copiedLabel }: { email: string; copiedLabel: string }) {
   const [copied, setCopied] = useState(false);
   const { play } = useSound();
 
@@ -16,13 +15,13 @@ export function CopyEmail({ email }: { email: string }) {
       </a>
       <button
         type="button"
-        className="relative grid size-8 place-items-center rounded-full hover:bg-surface-2"
+        className="relative grid size-8 place-items-center hover:text-primary"
         aria-label={copied ? "Email copied" : "Copy email address"}
         onClick={async () => {
           try {
             await navigator.clipboard.writeText(email);
             setCopied(true);
-            play("sparkle");
+            play("stamp");
             window.setTimeout(() => setCopied(false), 1800);
           } catch {
             // Clipboard blocked: the mailto link still works.
@@ -31,10 +30,9 @@ export function CopyEmail({ email }: { email: string }) {
       >
         {copied ? <Check size={16} className="text-mint" /> : <Copy size={16} />}
         {copied && (
-          <>
-            <SparkleStar color="var(--gold-bright)" size={14} top="-30%" left="-20%" />
-            <SparkleStar color="var(--primary)" size={12} top="60%" left="80%" />
-          </>
+          <span className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 -rotate-6 font-hand text-sm whitespace-nowrap text-primary" aria-hidden>
+            {copiedLabel}
+          </span>
         )}
       </button>
       <span role="status" className="sr-only">
