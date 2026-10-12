@@ -3,7 +3,7 @@
 Every sentence on the site lives in this folder. Change a `.json` file and the site changes. You never need to open `src/`.
 
 - **Locally:** run `npm run dev`. Saved changes show up in the browser straight away.
-- **Live site:** commit and push (or edit the file on GitHub and commit there). Vercel rebuilds in a minute or two.
+- **Live site:** commit and push (or edit the file on GitHub and commit there). GitHub Pages rebuilds in a couple of minutes. The AI twin learns the change when its worker is redeployed (automatic if the Cloudflare token is set up; see the main README).
 
 ## Which file has what
 
