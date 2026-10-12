@@ -1,10 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ff5fa2"/>
-      <stop offset="1" stop-color="#ffcc4d"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="16" fill="url(#g)"/>
-  <text x="32" y="42" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="26" font-weight="700" fill="#ffffff">RS</text>
+  <defs><clipPath id="c"><rect width="64" height="64" rx="14"/></clipPath></defs>
+  <rect width="64" height="64" rx="14" fill="#f4f0e4"/>
+  <g clip-path="url(#c)" stroke="#1d5aa0" stroke-opacity=".16" stroke-width="1">
+    <path d="M0 12.5H64M0 24.5H64M0 36.5H64M0 48.5H64M0 60.5H64M12.5 0V64M24.5 0V64M36.5 0V64M48.5 0V64M60.5 0V64"/>
+  </g>
+  <path transform="translate(10.68 45.5) scale(0.052 -0.052)" fill="#1c2740" d="M775 60Q790 60 790 45V15Q790 0 775 0H468Q453 0 453 15V45Q453 60 468 60H474Q499 60 511.0 74.5Q523 89 523 109Q523 132 510 155L419 325Q389 322 354 322H279V155Q279 115 294.0 87.5Q309 60 346 60H352Q367 60 367 45V15Q367 0 352 0H45Q30 0 30 15V45Q30 60 45 60H52Q90 60 104.5 87.5Q119 115 119 155V595Q119 636 103.5 663.0Q88 690 46 690Q31 690 31 705V735Q31 750 46 750H413Q494 750 554.0 721.0Q614 692 647.0 644.0Q680 596 680 539Q680 488 653.0 440.0Q626 392 561 361L670 155Q690 118 711.5 89.0Q733 60 770 60ZM337 393Q437 393 483.5 432.0Q530 471 530 539Q530 608 487.0 649.0Q444 690 369 690H279V393Z"/>
+  <path d="M13 53.5c9-2.6 26-3.6 39-1.6" fill="none" stroke="#b8321c" stroke-width="3.6" stroke-linecap="round"/>
 </svg>
