@@ -1,0 +1,13 @@
+{
+  // The AI twin's chat API. The website itself is static and hosted on GitHub Pages.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "rifat-ai-twin",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-09-01",
+  "vars": {
+    "ALLOWED_ORIGINS": "https://rifatsarwarcodes.github.io",
+    "GEMINI_MODELS": "gemini-3.5-flash-lite,gemini-3.8-flash,gemini-3.1-flash-lite"
+  },
+  // Secret, set once with: npx wrangler secret put GEMINI_API_KEY
+  "observability": { "enabled": true }
+}

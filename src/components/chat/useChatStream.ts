@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { RESTART } from "@/lib/chat/protocol";
+import { CHAT_URL, RESTART } from "@/lib/chat/protocol";
 import type { ChatMessage } from "@/lib/chat/validate";
 
 const STORAGE_KEY = "rs-chat-history";
@@ -60,7 +60,8 @@ export function useChatStream(copy: { connectionLost: string; stopped: string })
         });
 
       try {
-        const res = await fetch("/api/chat", {
+        if (!CHAT_URL) throw new Error("NEXT_PUBLIC_CHAT_URL is not set, so the AI twin has nowhere to send messages");
+        const res = await fetch(CHAT_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ messages: outgoing }),
@@ -80,6 +81,7 @@ export function useChatStream(copy: { connectionLost: string; stopped: string })
         }
       } catch (err) {
         if ((err as Error).name !== "AbortError") {
+          console.warn("[chat]", (err as Error).message);
           append(copy.connectionLost);
         }
       } finally {

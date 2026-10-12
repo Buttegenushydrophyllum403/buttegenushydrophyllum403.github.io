@@ -1,9 +1,18 @@
 import { Ratelimit, type Duration } from "@upstash/ratelimit";
-import { redis } from "./redis";
+import { createRedis } from "./redis";
 
 type Limiter = { limit: (key: string) => Promise<{ success: boolean; reset: number }> };
 
-/** In-memory sliding window for local dev (not shared across serverless instances). */
+export type LimitEnv = {
+  /** "off" disables the per-visitor limits (local development). Anything else, or unset, enforces them. */
+  CHAT_LIMITS?: string;
+  CHAT_LIMIT_PER_MINUTE?: string;
+  CHAT_LIMIT_PER_DAY?: string;
+  UPSTASH_REDIS_REST_URL?: string;
+  UPSTASH_REDIS_REST_TOKEN?: string;
+};
+
+/** In-memory sliding window: per server instance only. Add Upstash to share limits across instances. */
 function memoryLimiter(max: number, windowMs: number): Limiter {
   const hits = new Map<string, number[]>();
   return {
@@ -19,19 +28,23 @@ function memoryLimiter(max: number, windowMs: number): Limiter {
 }
 
 const MS: Record<string, number> = { s: 1000, m: 60_000, h: 3_600_000, d: 86_400_000 };
+const unlimited: Limiter = { limit: async () => ({ success: true, reset: Date.now() }) };
 
-function createLimiter(prefix: string, max: number, window: Duration): Limiter {
-  if (redis) {
-    return new Ratelimit({ redis, limiter: Ratelimit.slidingWindow(max, window), prefix: `rl:${prefix}` });
-  }
+function createLimiter(env: LimitEnv, prefix: string, max: number, window: Duration): Limiter {
+  const redis = createRedis(env);
+  if (redis) return new Ratelimit({ redis, limiter: Ratelimit.slidingWindow(max, window), prefix: `rl:${prefix}` });
   const [, amount, unit] = /^(\d+)\s*([smhd])$/.exec(window) ?? [];
   return memoryLimiter(max, Number(amount) * MS[unit]);
 }
 
-/** Local development (npm run dev) isn't limited: one person testing would burn through a visitor's daily allowance. */
-const unlimited: Limiter = { limit: async () => ({ success: true, reset: Date.now() }) };
-const enforce = process.env.NODE_ENV === "production";
+let cached: { perMinute: Limiter; perDay: Limiter } | null = null;
 
-/** Per-visitor chat limits. Override with CHAT_LIMIT_PER_MINUTE / CHAT_LIMIT_PER_DAY. */
-export const chatPerMinute = enforce ? createLimiter("chat-m", Number(process.env.CHAT_LIMIT_PER_MINUTE ?? 8), "1 m") : unlimited;
-export const chatPerDay = enforce ? createLimiter("chat-d", Number(process.env.CHAT_LIMIT_PER_DAY ?? 40), "1 d") : unlimited;
+/** Per-visitor chat limits, created once per server instance. */
+export function chatLimiters(env: LimitEnv) {
+  if (env.CHAT_LIMITS === "off") return { perMinute: unlimited, perDay: unlimited };
+  cached ??= {
+    perMinute: createLimiter(env, "chat-m", Number(env.CHAT_LIMIT_PER_MINUTE ?? 8), "1 m"),
+    perDay: createLimiter(env, "chat-d", Number(env.CHAT_LIMIT_PER_DAY ?? 40), "1 d"),
+  };
+  return cached;
+}

@@ -1,0 +1,7 @@
+# Copy to .dev.vars for `npm run twin:dev` (the AI twin worker on http://localhost:8787).
+# On Cloudflare, set the key once with: npx wrangler secret put GEMINI_API_KEY
+GEMINI_API_KEY=
+# No per-visitor limits while developing.
+CHAT_LIMITS=off
+# Canned replies, no Gemini calls:
+# CHAT_MOCK=1

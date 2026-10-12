@@ -1,9 +1,13 @@
-import { createHash } from "node:crypto";
-
-/** A salted hash of the visitor IP: good enough to rate limit, useless to identify anyone. */
-export function visitorKey(headers: Headers): string {
-  const forwarded = headers.get("x-forwarded-for")?.split(",")[0]?.trim();
-  const ip = forwarded || headers.get("x-real-ip") || "unknown";
-  const salt = process.env.IP_HASH_SALT ?? "local-dev-salt";
-  return createHash("sha256").update(`${salt}:${ip}`).digest("hex").slice(0, 32);
+/**
+ * A salted hash of the visitor IP: good enough to rate limit, useless to identify anyone.
+ * Uses Web Crypto, so it runs anywhere (Cloudflare Workers, Node, browsers).
+ */
+export async function visitorKey(headers: Headers, salt = "local-dev-salt"): Promise<string> {
+  const ip =
+    headers.get("cf-connecting-ip") ||
+    headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    headers.get("x-real-ip") ||
+    "unknown";
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(`${salt}:${ip}`));
+  return Array.from(new Uint8Array(digest).slice(0, 16), (b) => b.toString(16).padStart(2, "0")).join("");
 }

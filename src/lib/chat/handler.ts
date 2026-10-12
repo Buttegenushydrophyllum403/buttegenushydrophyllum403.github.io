@@ -4,19 +4,25 @@ import { RESTART } from "@/lib/chat/protocol";
 import { SYSTEM_PROMPT } from "@/lib/chat/system-prompt";
 import { prepareMessages } from "@/lib/chat/validate";
 import { visitorKey } from "@/lib/ip";
-import { chatPerDay, chatPerMinute } from "@/lib/ratelimit";
+import { chatLimiters, type LimitEnv } from "@/lib/ratelimit";
 
-export const runtime = "nodejs";
-export const maxDuration = 60;
+/** Settings and secrets for the chat. In the Cloudflare Worker these are its vars and secrets. */
+export type ChatEnv = LimitEnv & {
+  GEMINI_API_KEY?: string;
+  /** Comma-separated, tried in order. */
+  GEMINI_MODELS?: string;
+  /** "false" switches the chat off. */
+  CHAT_ENABLED?: string;
+  /** "1" returns canned replies without calling Gemini (tests and offline development). */
+  CHAT_MOCK?: string;
+  IP_HASH_SALT?: string;
+};
 
 /**
  * Tried in order. Flash-Lite leads because its free-tier daily quota lasts much longer; when a model's
  * quota runs out (429), it's missing (404) or keeps failing, the next one takes over.
  */
-const MODELS = (process.env.GEMINI_MODELS ?? "gemini-3.5-flash-lite,gemini-3.8-flash,gemini-3.1-flash-lite")
-  .split(",")
-  .map((m) => m.trim())
-  .filter(Boolean);
+const DEFAULT_MODELS = "gemini-3.5-flash-lite,gemini-3.8-flash,gemini-3.1-flash-lite";
 
 const LINES = chatCopy.replies;
 const BLOCKED = new Set(["SAFETY", "BLOCKLIST", "PROHIBITED_CONTENT", "SPII", "RECITATION", "IMAGE_SAFETY"]);
@@ -25,8 +31,17 @@ function plain(text: string, status: number) {
   return new Response(text, { status, headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" } });
 }
 
-export async function POST(req: Request) {
-  if (process.env.CHAT_ENABLED === "false") return plain(LINES.disabled, 503);
+/**
+ * The AI twin's chat endpoint: validates the conversation, applies per-visitor limits, then streams
+ * a plain-text reply from Gemini. Framework-free (standard Request/Response), so it runs in the
+ * Cloudflare Worker that serves the static site's chat.
+ */
+export async function handleChat(req: Request, env: ChatEnv): Promise<Response> {
+  if (env.CHAT_ENABLED === "false") return plain(LINES.disabled, 503);
+  const MODELS = (env.GEMINI_MODELS || DEFAULT_MODELS)
+    .split(",")
+    .map((m) => m.trim())
+    .filter(Boolean);
 
   let body: unknown;
   try {
@@ -37,16 +52,17 @@ export async function POST(req: Request) {
   const prepared = prepareMessages(body);
   if (!prepared.ok) return plain(LINES.invalid, 400);
 
-  const key = visitorKey(req.headers);
-  const [minute, day] = await Promise.all([chatPerMinute.limit(key), chatPerDay.limit(key)]);
+  const key = await visitorKey(req.headers, env.IP_HASH_SALT);
+  const limits = chatLimiters(env);
+  const [minute, day] = await Promise.all([limits.perMinute.limit(key), limits.perDay.limit(key)]);
   if (!day.success) return plain(LINES.dailyLimit, 429);
   if (!minute.success) return plain(LINES.rateLimited, 429);
 
-  if (process.env.CHAT_MOCK === "1") return mockStream(prepared.messages.at(-1)!.content);
+  if (env.CHAT_MOCK === "1") return mockStream(prepared.messages.at(-1)!.content);
 
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = env.GEMINI_API_KEY;
   if (!apiKey) {
-    console.error("[chat] GEMINI_API_KEY is not set (add it to .env.local, or to Vercel's environment variables)");
+    console.error("[chat] GEMINI_API_KEY is not set (wrangler secret put GEMINI_API_KEY, or .dev.vars locally)");
     return plain(LINES.disabled, 503);
   }
 
@@ -78,7 +94,8 @@ export async function POST(req: Request) {
                 system: SYSTEM_PROMPT,
                 turns,
                 maxOutputTokens: 1024,
-                temperature: 0.8,
+                // Lower than default: Flash-Lite occasionally slips into another language when it runs hot.
+                temperature: 0.6,
                 // A portfolio chat doesn't need deep reasoning. LOW is accepted by all the default models.
                 thinkingLevel: "LOW",
                 signal: req.signal,
