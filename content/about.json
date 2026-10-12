@@ -1,12 +1,13 @@
 {
-  "metaDescription": "About Rifat Sarwar: backend engineer who also does machine learning, CSE graduate of IUT.",
+  "metaDescription": "About Rifat Sarwar: backend engineer who gets his hands dirty with ML and embedding systems, CSE graduate of IUT.",
   "eyebrow": "About",
   "title": "Serious about the work. ==Not about myself.==",
   "paragraphs": [
-    "I build backends that stay up, shrink ML models until they fit on modest hardware, and write software for machines that drive, grab and fly.",
-    "Right now I'm a Senior Software Engineer at Star Technologies, where I own backend architecture end to end, and I lead StarWatch, where we build drones from scratch.",
+    "I build backends that stay up, shrink ML models until they fit on modest hardware, and sometimes write software for machines that drive, grab and fly.",
+    "Right now I'm a Senior Software Engineer at Star Technologies, where I own backend architecture end to end. I also work on drone systems, especially the software side.",
     "Before that I was an LLM developer at Megamind Tech (remote, Canada), fine-tuning language models with LoRA and quantizing them until they ran offline on modest hardware. At university I wrote software for IUT's Mars rover, Project Altair, which placed 6th in the world at the International Rover Challenge. Then I led Project Aero, a drone team.",
-    "I graduated from IUT in 2026 with a 3.78 CGPA and a thesis on teaching SAM3 to work underwater and on cheap hardware, all while working as an engineer. I don't recommend the schedule. I do recommend the thesis."
+    "I graduated from IUT in 2026 with a 3.78 CGPA and a thesis on teaching SAM3 to work underwater and on cheap hardware, all while working as an engineer. I don't recommend the schedule. I do recommend the thesis.",
+    "**Nerd was never an insult.**"
   ],
   "cvButton": "Read the CV",
   "twinButton": "Ask my AI twin",
@@ -68,6 +69,6 @@
   },
   "colophon": {
     "title": "Colophon",
-    "text": "Built with Next.js, TypeScript, Tailwind CSS and Motion, and deployed on Vercel. Set in Young Serif, IBM Plex Sans and Plex Mono, with Kalam standing in for handwriting I don't have, and Hind Siliguri for the Bangla. Light mode is graph paper; dark mode is a blueprint. The sounds are synthesized in your browser, so there are no audio files. The AI twin runs on Google Gemini and only knows what's on this site. The contact form has no server at all: it writes the email, and your mail app sends it."
+    "text": "Built with Next.js, TypeScript, Tailwind CSS and Motion, and deployed on Vercel. Set in Young Serif, IBM Plex Sans and Plex Mono, with Kalam standing in for handwriting I don't have. Light mode is graph paper; dark mode is a blueprint. The sounds are synthesized in your browser, so there are no audio files. The AI twin runs on Google Gemini and only knows what's on this site. The contact form has no server at all: it writes the email, and your mail app sends it."
   }
 }

@@ -21,14 +21,16 @@ export function Hero() {
     <section className="relative" aria-labelledby="hero-title">
       <div className="container-page relative grid items-start gap-14 pt-12 pb-16 md:grid-cols-[1.3fr_0.7fr] md:pt-20 md:pb-20">
         <div>
-          <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <span lang="bn" className="font-bangla text-xl text-text">
-              {copy.greeting}
-            </span>
-            <span className="font-hand text-primary">{copy.greetingNote}</span>
-          </p>
+          {copy.greeting && (
+            <p className="mb-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span lang="bn" className="font-bangla text-xl text-text">
+                {copy.greeting}
+              </span>
+              {copy.greetingNote && <span className="font-hand text-primary">{copy.greetingNote}</span>}
+            </p>
+          )}
 
-          <h1 id="hero-title" className="mt-4 font-display text-6xl leading-[0.95] sm:text-7xl lg:text-8xl">
+          <h1 id="hero-title" className="font-display text-6xl leading-[0.95] sm:text-7xl lg:text-8xl">
             {profile.name}
           </h1>
 
@@ -58,9 +60,11 @@ export function Hero() {
             <ChatButton className={btnSecondary}>
               <MessageSquareText size={18} aria-hidden /> {copy.twinButton}
             </ChatButton>
-            <a href={profile.cvPath} target="_blank" rel="noopener" className="inline-flex items-center gap-1.5 font-mono text-sm underline decoration-primary decoration-2 underline-offset-4 hover:text-primary">
-              <FileText size={16} aria-hidden /> {copy.cvLabel}
-            </a>
+            {copy.cvLabel && (
+              <a href={profile.cvPath} target="_blank" rel="noopener" className="inline-flex items-center gap-1.5 font-mono text-sm underline decoration-primary decoration-2 underline-offset-4 hover:text-primary">
+                <FileText size={16} aria-hidden /> {copy.cvLabel}
+              </a>
+            )}
           </div>
 
           <ol className="mt-12 max-w-xl space-y-1 border-t border-text/40 pt-3 text-sm text-muted sm:w-2/3" aria-label="Footnotes">

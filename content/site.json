@@ -1,6 +1,6 @@
 {
   "seo": {
-    "description": "Rifat Sarwar: backend engineer who also does machine learning. Microservices on AWS, LLMs squeezed onto small hardware, a Mars rover ranked 6th globally, and drones built from scratch.",
+    "description": "Rifat Sarwar: backend engineer who gets his hands dirty with ML and embedding systems. Microservices on AWS, LLMs squeezed onto small hardware, a Mars rover ranked 6th globally, and drones built from scratch.",
     "keywords": [
       "Rifat Sarwar",
       "Backend Engineer",
@@ -40,7 +40,7 @@
       { "label": "Research", "href": "/#research" },
       { "label": "About", "href": "/about" },
       { "label": "Contact", "href": "/contact" },
-      { "label": "CV (pdf)", "href": "/cv/rifat_sarwar_cv.pdf" }
+      { "label": "CV (pdf)", "href": "/cv/RifatSarwar.pdf" }
     ],
     "elsewhereTitle": "Elsewhere",
     "bugs": "0 known bugs",
@@ -55,8 +55,8 @@
   },
   "ogImage": {
     "eyebrow": "hello, I'm Rifat",
-    "subtitle": "Backend engineer who also does machine learning. Microservices on AWS, LLMs on small hardware, a Mars rover ranked 6th globally, and drones built from scratch.",
-    "footer": "v2.0.0 · now with an AI twin →",
+    "subtitle": "Backend engineer who gets his hands dirty with ML and embedding systems. Microservices on AWS, LLMs on small hardware, a Mars rover ranked 6th globally, and drones built from scratch.",
+    "footer": "now with an AI twin →",
     "projectEyebrow": "Case file",
     "projectFooter": "Rifat Sarwar · Backend Engineer · Machine Learning"
   }

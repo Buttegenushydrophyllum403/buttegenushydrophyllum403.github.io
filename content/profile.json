@@ -2,16 +2,16 @@
   "name": "Rifat Sarwar",
   "firstName": "Rifat",
   "title": "Backend Engineer",
-  "specialties": "Machine Learning",
+  "specialties": "ML & Embedding Systems",
   "location": "Bangladesh",
-  "voice": "I try to take my work seriously, but not myself. Love to code. Fueled by curiosity and occasional panic.",
+  "voice": "I try to take my work seriously, but not myself. Love to code. Fueled by curiosity and occasional panic. Nerd was never an insult.",
   "intro": [
-    "I build backends that stay up, shrink ML models until they fit on modest hardware, and write software for machines that drive, grab and fly.",
-    "Right now I'm a Senior Software Engineer at Star Technologies, where I own backend architecture end to end, and I lead StarWatch, where we build drones from scratch."
+    "I build backends that stay up, shrink ML models until they fit on modest hardware, and sometimes write software for machines that drive, grab and fly.",
+    "Right now I'm a Senior Software Engineer at Star Technologies, where I own backend architecture end to end. I also work on drone systems, especially the software side."
   ],
   "email": "rifatsarwar17442@gmail.com",
   "links": { "linkedin": "https://www.linkedin.com/in/rifatsarwar", "github": "https://github.com/rifatsarwarcodes" },
-  "cvPath": "/cv/rifat_sarwar_cv.pdf",
+  "cvPath": "/cv/RifatSarwar.pdf",
   "headshot": {
     "src": "/images/headshot/image.png",
     "alt": "Rifat Sarwar in a dark shirt and glasses, grinning in front of a brick wall",

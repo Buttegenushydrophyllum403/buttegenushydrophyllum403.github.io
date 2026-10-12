@@ -100,20 +100,5 @@
     "knownIssues": "Has started saying “ground truth” and meaning the actual ground.",
     "projectSlug": "star-watch",
     "current": true
-  },
-  {
-    "id": "graduation",
-    "version": "2.0.0",
-    "period": "2026",
-    "org": "Islamic University of Technology",
-    "orgNote": "IUT",
-    "role": "Graduated, BSc in CSE",
-    "kind": "education",
-    "summary": "Breaking change: removed the `student` flag. Shipped alongside an engineering job, against medical advice.",
-    "highlights": [
-      "CGPA 3.78 / 4.00",
-      "Thesis on adapting SAM3 to new domains and running it on low-end hardware, supervised by Dr. Md. Hasanul Kabir"
-    ],
-    "knownIssues": "Sleep is scheduled for a future release."
   }
 ]

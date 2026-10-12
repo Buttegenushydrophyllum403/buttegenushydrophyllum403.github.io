@@ -166,8 +166,9 @@ const photoCopy = z.strictObject({ caption: text, back: z.array(text), punchline
 
 export const homeCopySchema = z.strictObject({
   hero: z.strictObject({
-    greeting: text,
-    greetingNote: text,
+    /** Optional line above the name (e.g. a greeting), with a handwritten note beside it. */
+    greeting: text.optional(),
+    greetingNote: text.optional(),
     formerTitle: text,
     titleNote: text,
     titleRest: text,
@@ -175,7 +176,8 @@ export const homeCopySchema = z.strictObject({
     footnotes: z.array(text),
     changelogButton: text,
     twinButton: text,
-    cvLabel: text,
+    /** Optional CV link beside the hero buttons; leave it out to hide the link. */
+    cvLabel: text.optional(),
     photo: photoCopy,
     stamp: z.strictObject({ top: text, bottom: text }),
   }),
