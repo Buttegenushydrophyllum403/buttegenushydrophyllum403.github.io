@@ -1,6 +1,6 @@
 # Rifat Sarwar · portfolio
 
-My personal site: backend engineer who gets his hands dirty with ML and embedding systems.
+My personal site: backend engineer who gets his hands dirty with ML and embedded systems.
 Built with Next.js 16, TypeScript, Tailwind CSS v4 and Motion. Light mode is graph paper, dark mode is a blueprint, and there's an AI twin you can interview (Google Gemini).
 
 ## Run locally
