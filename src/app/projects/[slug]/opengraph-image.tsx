@@ -5,6 +5,8 @@ import { OG_SIZE, OgCard } from "@/lib/og";
 export const alt = "Project case study by Rifat Sarwar";
 export const size = OG_SIZE;
 export const contentType = "image/png";
+// Rendered once at build time (the site is a static export).
+export const dynamic = "force-static";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));

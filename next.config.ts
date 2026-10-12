@@ -1,15 +1,17 @@
 import type { NextConfig } from "next";
 
+/**
+ * The site is a static export hosted on GitHub Pages (`npm run build` writes ./out).
+ * Anything that needs a server lives elsewhere: the AI twin's chat runs in the Cloudflare Worker
+ * in worker/, and /cv, /resume and the preview images are finished by scripts/postbuild.mjs.
+ */
 const nextConfig: NextConfig = {
-  images: {
-    formats: ["image/avif", "image/webp"],
-  },
-  async redirects() {
-    return [
-      { source: "/cv", destination: "/cv/rifat_sarwar_cv.pdf", permanent: false },
-      { source: "/resume", destination: "/cv/rifat_sarwar_cv.pdf", permanent: false },
-    ];
-  },
+  output: "export",
+  // Export pages as about/index.html rather than about.html: static hosts can't confuse the page with
+  // the about/ folder that holds its data files, and GitHub Pages redirects /about to /about/.
+  trailingSlash: true,
+  // GitHub Pages has no image optimizer, so images are served as they are in /public.
+  images: { unoptimized: true },
 };
 
 export default nextConfig;

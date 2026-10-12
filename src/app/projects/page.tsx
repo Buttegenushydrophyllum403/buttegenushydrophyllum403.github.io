@@ -6,7 +6,7 @@ import { projects, projectsPageCopy as copy } from "@/content";
 export const metadata: Metadata = {
   title: "Projects",
   description: copy.metaDescription,
-  alternates: { canonical: "/projects" },
+  alternates: { canonical: "/projects/" },
 };
 
 const GROUPS = (["app", "ai", "robotics"] as const).map((id) => ({ id, ...copy.groups[id] }));

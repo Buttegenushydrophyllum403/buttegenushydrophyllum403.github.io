@@ -11,7 +11,7 @@ import { btnPrimary, btnSecondary } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "About",
   description: copy.metaDescription,
-  alternates: { canonical: "/about" },
+  alternates: { canonical: "/about/" },
 };
 
 export default function AboutPage() {

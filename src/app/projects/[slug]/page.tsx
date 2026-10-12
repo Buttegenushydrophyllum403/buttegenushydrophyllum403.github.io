@@ -28,8 +28,8 @@ export async function generateMetadata({ params }: PageProps<"/projects/[slug]">
   return {
     title: project.title,
     description: project.tagline,
-    alternates: { canonical: `/projects/${project.slug}` },
-    openGraph: { title: `${project.title} · ${profile.name}`, description: project.tagline, url: `/projects/${project.slug}` },
+    alternates: { canonical: `/projects/${project.slug}/` },
+    openGraph: { title: `${project.title} · ${profile.name}`, description: project.tagline, url: `/projects/${project.slug}/` },
   };
 }
 

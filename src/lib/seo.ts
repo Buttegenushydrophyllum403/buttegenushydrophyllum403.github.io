@@ -27,7 +27,7 @@ export function projectJsonLd(slug: string) {
       description: p.tagline,
       applicationCategory: "MobileApplication",
       operatingSystem: "Android, iOS",
-      url: store?.href ?? `${siteUrl}/projects/${p.slug}`,
+      url: store?.href ?? `${siteUrl}/projects/${p.slug}/`,
       creator: { "@type": "Person", name: profile.name },
     };
   }
@@ -36,7 +36,7 @@ export function projectJsonLd(slug: string) {
     "@type": "CreativeWork",
     name: p.title,
     description: p.tagline,
-    url: `${siteUrl}/projects/${p.slug}`,
+    url: `${siteUrl}/projects/${p.slug}/`,
     creator: { "@type": "Person", name: profile.name },
   };
 }

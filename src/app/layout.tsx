@@ -1,5 +1,3 @@
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import { Hind_Siliguri, IBM_Plex_Mono, IBM_Plex_Sans, Kalam, Young_Serif } from "next/font/google";
 import { DevConsoleNote } from "@/components/layout/DevConsoleNote";
@@ -70,8 +68,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <ChatRoot copy={chatUiCopy} />
           <DevConsoleNote email={profile.email} title={siteCopy.console.title} body={siteCopy.console.body} />
         </Providers>
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );

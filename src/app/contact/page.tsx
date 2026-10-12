@@ -10,7 +10,7 @@ import { contactCopy as copy, profile, siteCopy } from "@/content";
 export const metadata: Metadata = {
   title: "Contact",
   description: copy.metaDescription,
-  alternates: { canonical: "/contact" },
+  alternates: { canonical: "/contact/" },
 };
 
 export default function ContactPage() {
