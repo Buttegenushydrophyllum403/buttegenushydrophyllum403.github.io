@@ -1,0 +1,41 @@
+{
+  "metaDescription": "Case studies: GenieA, HealthStar, StarWatch, Project Altair, Project Aero and offline LLMs at Megamind.",
+  "eyebrow": "Projects",
+  "title": "The drawer",
+  "intro": "Every project gets an index card: the brief, what I actually did, and how it turned out.",
+  "aside": "research lives on the home page, in §3.",
+  "groups": {
+    "app": { "title": "Backends (with apps attached)", "intro": "Shipped to real phones, used by real people." },
+    "ai": { "title": "Machine learning", "intro": "Language models that work without the cloud." },
+    "robotics": { "title": "Robotics", "intro": "Rovers and drones. The fun kind of debugging." }
+  },
+  "card": {
+    "number": "No.",
+    "categories": { "app": "app", "ai": "AI", "robotics": "robotics" }
+  },
+  "caseStudy": {
+    "back": "back to the drawer",
+    "eyebrow": "Case file",
+    "role": "Role",
+    "where": "Where",
+    "status": "Status",
+    "draftTitle": "Draft: the full write-up is still compiling.",
+    "draftText": "Want the details now? Ask the AI twin, or the real Rifat.",
+    "draftButton": "Ask about {title}",
+    "draftQuestion": "Tell me more about {title}.",
+    "sections": {
+      "brief": "Mission brief",
+      "role": "My role",
+      "architecture": "Architecture",
+      "stack": "Stack",
+      "results": "Results",
+      "sideways": "What went sideways",
+      "gallery": "Gallery"
+    },
+    "previous": "Previous",
+    "next": "Next",
+    "storePlay": "Get it on",
+    "storeApp": "Download on the",
+    "storeComingSoon": "Also on"
+  }
+}

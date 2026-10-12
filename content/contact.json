@@ -1,0 +1,42 @@
+{
+  "metaDescription": "Get in touch with Rifat Sarwar.",
+  "eyebrow": "Contact",
+  "title": "Write to me.",
+  "intro": "Hiring, collaborating, or own a system that falls over at 3 AM and would like it to stop? This form drafts the email for you; your mail app sends it, and a human (me) reads it.",
+  "emailLabel": "Email",
+  "linkedinLabel": "LinkedIn",
+  "linkedinText": "linkedin.com/in/rifatsarwar",
+  "githubLabel": "GitHub",
+  "githubText": "github.com/rifatsarwarcodes",
+  "note": "Just a quick question? The AI twin answers instantly. Sarcastically, but instantly.",
+  "noteButton": "ask the AI twin",
+  "form": {
+    "nameLabel": "Name",
+    "namePlaceholder": "Grace Hopper",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@company.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "The role, the project, or the drone you want built. Bonus points for a well-defined API contract.",
+    "submit": "Send message",
+    "submitHint": "Opens your email app with this already written.",
+    "errorSummary": "A couple of fields need another look.",
+    "errors": {
+      "nameShort": "Your name needs at least 2 characters.",
+      "nameLong": "That name is a bit long.",
+      "email": "That email doesn't look right.",
+      "messageShort": "Give me at least 20 characters to work with.",
+      "messageLong": "Keep it under 2000 characters."
+    },
+    "emailSubject": "Portfolio message from {name}",
+    "emailSignature": "Sent via the contact form on Rifat's portfolio.",
+    "success": {
+      "stamp": "Stamped",
+      "title": "Your email app has it from here",
+      "text": "I've written the email for you; it just needs you to press send.",
+      "retryPrefix": "Nothing opened?",
+      "retry": "Try again",
+      "copyPrefix": "or copy it to",
+      "another": "write another"
+    }
+  }
+}

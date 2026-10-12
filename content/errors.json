@@ -1,0 +1,15 @@
+{
+  "notFound": {
+    "stamp": "Error 404",
+    "title": "The rover wandered off the map.",
+    "text": "This page doesn't exist, or it drove itself into a crater. Autonomous navigation is hard, okay?",
+    "note": "filed under: known issues",
+    "button": "Return to base"
+  },
+  "error": {
+    "stamp": "Unexpected turbulence",
+    "title": "Something crashed. Not the drone, this time.",
+    "text": "Try again. If it keeps happening, the bug is mine, and I'd genuinely like to hear about it.",
+    "button": "Try again"
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "hero": {
+    "greeting": "হ্যালো, আমি রিফাত।",
+    "greetingNote": "← that's “hello, I'm Rifat” in Bangla",
+    "formerTitle": "Full-stack developer",
+    "titleNote": "new CV. the stack got too tall",
+    "titleRest": "who also does machine learning.",
+    "lead": "I build backends that ==stay up==[^1], shrink ML models until they fit on cheap hardware[^2], and write software for things that drive, grab and fly[^3].",
+    "footnotes": [
+      "Prometheus, Grafana and CloudWatch will back me up. Ask them nicely.",
+      "SAM3 in 657 MB of RAM, with no measurable accuracy loss. Details in §3.",
+      "Mostly on purpose."
+    ],
+    "changelogButton": "Read the changelog",
+    "twinButton": "Interview my AI twin",
+    "cvLabel": "rifat_sarwar_cv.pdf",
+    "photo": {
+      "caption": "me, minutes before a deploy",
+      "back": ["Rifat, 2026.", "Smiling because the tests passed."],
+      "punchline": "(The tests had not been run yet.)",
+      "hint": "there's writing on the back",
+      "hintFlipped": "flip back"
+    },
+    "stamp": { "top": "IUT · CSE · '26", "bottom": "CGPA 3.78" }
+  },
+  "ticker": [
+    { "value": "6th", "label": "globally at IRC" },
+    { "value": "10K+", "label": "people on GenieA" },
+    { "value": "0.92", "label": "pass@1, robot-writing LLM" },
+    { "value": "657 MB", "label": "SAM3, quantized" },
+    { "value": "115", "label": "AI maths records audited" },
+    { "value": "61", "label": "spherical t-designs proven" },
+    { "value": "3.78", "label": "CGPA, IUT" },
+    { "value": "16th", "label": "globally at ERC" },
+    { "value": "2nd", "label": "at CodeRush" },
+    { "value": "nominal", "label": "panic levels" }
+  ],
+  "sections": {
+    "changelog": {
+      "eyebrow": "01 — Changelog",
+      "title": "Release notes for a human",
+      "intro": "Every career update since 2022, newest first. Breaking changes are flagged and known issues are disclosed, because that's just good engineering.",
+      "aside": "v2.0.0 is the one where I stopped being a student. huge release."
+    },
+    "shipped": {
+      "eyebrow": "02 — Shipped",
+      "title": "Things in production (and in the air)",
+      "intro": "Apps on real phones, models on small hardware, machines that move. One index card each.",
+      "allLink": "open the whole drawer"
+    },
+    "research": {
+      "eyebrow": "03 — Research",
+      "title": "Papers, a thesis, and one glove",
+      "intro": "What I do when nobody has filed a ticket: re-checking results that look too good, and making big models behave on hardware that doesn't want them.",
+      "aside": "“unpublished manuscript” means finished and waiting its turn."
+    },
+    "awards": { "eyebrow": "04 — Awards", "title": "Yes, I have receipts", "intro": "Competition results, itemised." },
+    "toolbox": {
+      "eyebrow": "05 — Toolbox",
+      "title": "RTFM",
+      "intro": "The skills section, rewritten as the manual page it always wanted to be.",
+      "aside": "every flag is real, except the coffee one. that one's optional."
+    }
+  },
+  "changelog": {
+    "repo": "rifat/career",
+    "file": "CHANGELOG.md",
+    "tagline": "follows semver, loosely",
+    "preamble": "All notable changes to this human are documented here. The format is based on *Keep a Changelog*.",
+    "unreleasedText": "Whatever you're building next. [Pull requests welcome](/contact).",
+    "added": "Added",
+    "knownIssues": "Known issues",
+    "current": "current",
+    "caseStudyLink": "read the case study"
+  },
+  "research": { "tldr": "tl;dr", "pdfLink": "read the full paper (pdf)" },
+  "receipt": {
+    "store": "★ RIFAT SARWAR ★",
+    "storeLines": ["COMPETITIONS & CO.", "BANGLADESH · EST. 2022"],
+    "cashier": "CASHIER: rifat",
+    "date": "DATE: various",
+    "subtotal": "SUBTOTAL",
+    "eventsUnit": "events",
+    "extras": [
+      { "label": "TEAMWORK", "value": "INCL." },
+      { "label": "SLEEP", "value": "0.00" }
+    ],
+    "total": "TOTAL",
+    "totalValue": "PRICELESS*",
+    "footnote": "* rovers are non-refundable",
+    "thanks": "THANK YOU, COME AGAIN",
+    "barcode": "IUT-ALTAIR-0006",
+    "note": "Kept the receipt. You never know when someone will ask for proof.",
+    "credit": "The rover results belong to all of Team Altair. I wrote the software for the drive, the arm and the autonomy.",
+    "reprint": "reprint receipt",
+    "link": { "label": "meet the rover", "href": "/projects/project-altair" }
+  },
+  "manPage": {
+    "prompt": "rifat@iut:~$ man rifat",
+    "header": ["RIFAT(1)", "General Commands Manual", "RIFAT(1)"],
+    "name": "rifat — backend engineer, ML tinkerer, occasional drone pilot",
+    "synopsis": "rifat [--backend] [--ml] [--fly] [--coffee=optional] problem",
+    "description": "Takes a problem and returns a system that solves it, complete with an API contract, a dashboard, and an alert that fires before anyone notices. Runs on curiosity; falls back to occasional panic.",
+    "exitStatus": "`0` once it's deployed, monitored and documented. Not before.",
+    "bugs": [
+      "Gets unreasonably excited about exact rational arithmetic.",
+      "Treats “works on my machine” as a bug report, not a defence.",
+      "Has to be stopped from quantizing things that are not neural networks."
+    ],
+    "seeAlso": [
+      { "label": "research(3)", "href": "#research" },
+      { "label": "projects(1)", "href": "/projects" },
+      { "label": "contact(2)", "href": "/contact" }
+    ],
+    "footer": ["IUT CSE '26", "October 2026", "RIFAT(1)"]
+  },
+  "interview": {
+    "eyebrow": "06 — Interview",
+    "title": "Interview my AI twin",
+    "intro": "It has read everything on this site and nothing else. It's mildly sarcastic, it won't make things up, and it knows when to send you to the real me.",
+    "hint": "try the last one. it won't fall for it.",
+    "noteTitle": "Questions to ask:",
+    "questions": [
+      "What did you build for Sylhet Metropolitan Police?",
+      "What was your thesis about?",
+      "How did a Mars rover team place 6th in the world?",
+      "Why should I hire you?",
+      "What's your salary expectation?"
+    ]
+  },
+  "postcard": {
+    "ariaLabel": "Got something worth building? Write to me on the contact page.",
+    "heading": "Got something worth building?",
+    "body": "Backend, ML, or anything with propellers. Write to me; the real Rifat reads every message. (The AI twin isn't allowed near the inbox.)",
+    "signoff": "— R.",
+    "postmark": ["Bangladesh", "2026", "air mail"],
+    "to": "To: Rifat Sarwar",
+    "via": "Via: the contact form →",
+    "path": "/contact"
+  }
+}

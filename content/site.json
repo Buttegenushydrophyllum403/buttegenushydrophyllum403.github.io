@@ -1,0 +1,63 @@
+{
+  "seo": {
+    "description": "Rifat Sarwar: backend engineer who also does machine learning. Microservices on AWS, LLMs squeezed onto small hardware, a Mars rover ranked 6th globally, and drones built from scratch.",
+    "keywords": [
+      "Rifat Sarwar",
+      "Backend Engineer",
+      "Machine Learning",
+      "FastAPI",
+      "NestJS",
+      "Go",
+      "AWS",
+      "Kubernetes",
+      "LLM",
+      "RAG",
+      "SAM3",
+      "Robotics",
+      "Drones",
+      "Bangladesh",
+      "IUT"
+    ]
+  },
+  "nav": [
+    { "label": "Projects", "href": "/projects" },
+    { "label": "Changelog", "href": "/#changelog" },
+    { "label": "About", "href": "/about" },
+    { "label": "Contact", "href": "/contact" }
+  ],
+  "header": {
+    "twinButton": "AI twin",
+    "mobileTwinButton": "Interview my AI twin",
+    "versionTitle": "Current version. See the changelog."
+  },
+  "theme": { "toBlueprint": "Blueprint mode", "toPaper": "Back to graph paper" },
+  "footer": {
+    "tagline": "Backend Engineer · Machine Learning. Built in Bangladesh with Next.js, curiosity and occasional panic.",
+    "indexTitle": "Index",
+    "index": [
+      { "label": "Projects", "href": "/projects" },
+      { "label": "Changelog", "href": "/#changelog" },
+      { "label": "Research", "href": "/#research" },
+      { "label": "About", "href": "/about" },
+      { "label": "Contact", "href": "/contact" },
+      { "label": "CV (pdf)", "href": "/cv/rifat_sarwar_cv.pdf" }
+    ],
+    "elsewhereTitle": "Elsewhere",
+    "bugs": "0 known bugs",
+    "bugsAside": "(≠ 0 bugs)",
+    "disclaimer": "The AI twin is an AI, not actually Rifat, and it can be wrong. Chat messages go to Google's Gemini API to generate replies. This site doesn't store them, but Google may use them to improve its products, so don't share anything private."
+  },
+  "copied": "copied!",
+  "photoHint": { "flip": "Flip the photo to read the back", "flipBack": "Flip the photo back over" },
+  "console": {
+    "title": "Oh hi. You opened the console.",
+    "body": "That's exactly what I'd do. No errors here (on purpose, anyway).\nIf you're the kind of person who reads consoles, we should talk:"
+  },
+  "ogImage": {
+    "eyebrow": "hello, I'm Rifat",
+    "subtitle": "Backend engineer who also does machine learning. Microservices on AWS, LLMs on small hardware, a Mars rover ranked 6th globally, and drones built from scratch.",
+    "footer": "v2.0.0 · now with an AI twin →",
+    "projectEyebrow": "Case file",
+    "projectFooter": "Rifat Sarwar · Backend Engineer · Machine Learning"
+  }
+}

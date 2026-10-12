@@ -56,10 +56,12 @@ export const journeyStopSchema = z.object({
   orgNote: z.string().optional(),
   role: z.string(),
   kind: z.enum(["education", "work", "team"]),
-  /** Ground stops are driven by the rover, air stops by the drone. */
-  terrain: z.enum(["ground", "air"]),
+  /** Semver for a career. Rendered as the CHANGELOG heading. */
+  version: z.string().regex(/^\d+\.\d+\.\d+$/),
   summary: z.string(),
   highlights: z.array(z.string()).min(1),
+  /** The joke. Keep it a joke: no new facts in here. */
+  knownIssues: z.string().optional(),
   projectSlug: z.string().optional(),
   current: z.boolean().default(false),
 });
@@ -115,26 +117,261 @@ export const achievementSchema = z.object({
   eventShort: z.string(),
   team: z.string().optional(),
   details: z.array(z.string()).default([]),
-  medal: z.enum(["gold", "silver", "bronze", "ribbon"]),
   projectSlug: z.string().optional(),
 });
 export type Achievement = z.infer<typeof achievementSchema>;
 
 export const skillGroupSchema = z.object({
   id: z.string(),
+  /** Shown as a command-line option in the `man rifat` page. */
+  flag: z.string().startsWith("--"),
   title: z.string(),
   blurb: z.string(),
-  accent: z.enum(["primary", "gold", "sky", "mint"]),
   skills: z.array(z.string()).min(1),
 });
 export type SkillGroup = z.infer<typeof skillGroupSchema>;
 
 export const statSchema = z.object({
+  value: z.string(),
   label: z.string(),
-  value: z.number(),
-  prefix: z.string().default(""),
-  suffix: z.string().default(""),
-  decimals: z.number().int().default(0),
-  note: z.string(),
 });
 export type Stat = z.infer<typeof statSchema>;
+
+export const paperSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  venue: z.string(),
+  /** As printed on the PDF. Leave out when the PDF names no authors (e.g. double-blind review). */
+  authors: z.array(z.string()).optional(),
+  note: z.string().optional(),
+  year: z.string(),
+  /** Public path of the full paper. */
+  pdf: z.string().startsWith("/papers/").endsWith(".pdf"),
+  /** The one number worth circling in red pen. */
+  headline: z.object({ value: z.string(), label: z.string() }),
+  points: z.array(z.string()).min(1),
+  tldr: z.string(),
+});
+export type Paper = z.infer<typeof paperSchema>;
+
+/* ------------------------------------------------------------------------------------------
+ * Page copy. Every visible sentence on the site lives in content/*.json and is checked here.
+ * strictObject: a misspelt key fails the build instead of silently showing nothing.
+ * ---------------------------------------------------------------------------------------- */
+
+const text = z.string().min(1);
+const link = z.strictObject({ label: text, href: text });
+const sectionCopy = z.strictObject({ eyebrow: text, title: text, intro: text.optional(), aside: text.optional() });
+const photoCopy = z.strictObject({ caption: text, back: z.array(text), punchline: text, hint: text, hintFlipped: text });
+
+export const homeCopySchema = z.strictObject({
+  hero: z.strictObject({
+    greeting: text,
+    greetingNote: text,
+    formerTitle: text,
+    titleNote: text,
+    titleRest: text,
+    lead: text,
+    footnotes: z.array(text),
+    changelogButton: text,
+    twinButton: text,
+    cvLabel: text,
+    photo: photoCopy,
+    stamp: z.strictObject({ top: text, bottom: text }),
+  }),
+  ticker: z.array(statSchema).min(1),
+  sections: z.strictObject({
+    changelog: sectionCopy,
+    shipped: sectionCopy.extend({ allLink: text }),
+    research: sectionCopy,
+    awards: sectionCopy,
+    toolbox: sectionCopy,
+  }),
+  changelog: z.strictObject({
+    repo: text,
+    file: text,
+    tagline: text,
+    preamble: text,
+    unreleasedText: text,
+    added: text,
+    knownIssues: text,
+    current: text,
+    caseStudyLink: text,
+  }),
+  research: z.strictObject({ tldr: text, pdfLink: text }),
+  receipt: z.strictObject({
+    store: text,
+    storeLines: z.array(text),
+    cashier: text,
+    date: text,
+    subtotal: text,
+    eventsUnit: text,
+    extras: z.array(z.strictObject({ label: text, value: text })),
+    total: text,
+    totalValue: text,
+    footnote: text,
+    thanks: text,
+    barcode: text,
+    note: text,
+    credit: text,
+    reprint: text,
+    link,
+  }),
+  manPage: z.strictObject({
+    prompt: text,
+    header: z.tuple([text, text, text]),
+    name: text,
+    synopsis: text,
+    description: text,
+    exitStatus: text,
+    bugs: z.array(text),
+    seeAlso: z.array(link),
+    footer: z.tuple([text, text, text]),
+  }),
+  interview: sectionCopy.extend({ hint: text, noteTitle: text, questions: z.array(text).min(1) }),
+  postcard: z.strictObject({
+    ariaLabel: text,
+    heading: text,
+    body: text,
+    signoff: text,
+    postmark: z.array(text),
+    to: text,
+    via: text,
+    path: text,
+  }),
+});
+export type HomeCopy = z.infer<typeof homeCopySchema>;
+
+export const aboutCopySchema = z.strictObject({
+  metaDescription: text,
+  eyebrow: text,
+  title: text,
+  paragraphs: z.array(text).min(1),
+  cvButton: text,
+  twinButton: text,
+  photo: photoCopy,
+  faq: sectionCopy.extend({ items: z.array(z.strictObject({ q: text, a: text })) }),
+  education: sectionCopy.extend({ heading: text, rows: z.array(z.strictObject({ label: text, value: text })), stamp: text }),
+  colophon: z.strictObject({ title: text, text }),
+});
+export type AboutCopy = z.infer<typeof aboutCopySchema>;
+
+export const contactCopySchema = z.strictObject({
+  metaDescription: text,
+  eyebrow: text,
+  title: text,
+  intro: text,
+  emailLabel: text,
+  linkedinLabel: text,
+  linkedinText: text,
+  githubLabel: text,
+  githubText: text,
+  note: text,
+  noteButton: text,
+  form: z.strictObject({
+    nameLabel: text,
+    namePlaceholder: text,
+    emailLabel: text,
+    emailPlaceholder: text,
+    messageLabel: text,
+    messagePlaceholder: text,
+    submit: text,
+    submitHint: text,
+    errorSummary: text,
+    errors: z.strictObject({ nameShort: text, nameLong: text, email: text, messageShort: text, messageLong: text }),
+    emailSubject: text,
+    emailSignature: text,
+    success: z.strictObject({ stamp: text, title: text, text, retryPrefix: text, retry: text, copyPrefix: text, another: text }),
+  }),
+});
+export type ContactCopy = z.infer<typeof contactCopySchema>;
+export type ContactFormCopy = ContactCopy["form"];
+
+const groupCopy = z.strictObject({ title: text, intro: text });
+export const projectsPageCopySchema = z.strictObject({
+  metaDescription: text,
+  eyebrow: text,
+  title: text,
+  intro: text,
+  aside: text,
+  groups: z.strictObject({ app: groupCopy, ai: groupCopy, robotics: groupCopy }),
+  card: z.strictObject({ number: text, categories: z.strictObject({ app: text, ai: text, robotics: text }) }),
+  caseStudy: z.strictObject({
+    back: text,
+    eyebrow: text,
+    role: text,
+    where: text,
+    status: text,
+    draftTitle: text,
+    draftText: text,
+    draftButton: text,
+    draftQuestion: text,
+    sections: z.strictObject({
+      brief: text,
+      role: text,
+      architecture: text,
+      stack: text,
+      results: text,
+      sideways: text,
+      gallery: text,
+    }),
+    previous: text,
+    next: text,
+    storePlay: text,
+    storeApp: text,
+    storeComingSoon: text,
+  }),
+});
+export type ProjectsPageCopy = z.infer<typeof projectsPageCopySchema>;
+
+const errorCopy = z.strictObject({ stamp: text, title: text, text, note: text.optional(), button: text });
+export const errorsCopySchema = z.strictObject({ notFound: errorCopy, error: errorCopy });
+
+export const chatCopySchema = z.strictObject({
+  launcher: text,
+  title: text,
+  subtitle: text,
+  welcome: text,
+  suggestions: z.array(text).min(1),
+  placeholder: text,
+  disclaimer: text,
+  thinking: text,
+  stopped: text,
+  connectionLost: text,
+  replies: z.strictObject({
+    disabled: text,
+    rateLimited: text,
+    dailyLimit: text,
+    quota: text,
+    invalid: text,
+    refusal: text,
+    maxTokens: text,
+    error: text,
+    cutOff: text,
+  }),
+  voice: z.array(text).min(1),
+});
+export type ChatCopy = z.infer<typeof chatCopySchema>;
+/** The slice of chat copy the browser needs (the reply lines and voice stay on the server). */
+export type ChatUiCopy = Omit<ChatCopy, "replies" | "voice">;
+
+export const siteCopySchema = z.strictObject({
+  seo: z.strictObject({ description: text, keywords: z.array(text) }),
+  nav: z.array(link).min(1),
+  header: z.strictObject({ twinButton: text, mobileTwinButton: text, versionTitle: text }),
+  theme: z.strictObject({ toBlueprint: text, toPaper: text }),
+  footer: z.strictObject({
+    tagline: text,
+    indexTitle: text,
+    index: z.array(link),
+    elsewhereTitle: text,
+    bugs: text,
+    bugsAside: text,
+    disclaimer: text,
+  }),
+  copied: text,
+  photoHint: z.strictObject({ flip: text, flipBack: text }),
+  console: z.strictObject({ title: text, body: text }),
+  ogImage: z.strictObject({ eyebrow: text, subtitle: text, footer: text, projectEyebrow: text, projectFooter: text }),
+});
+export type SiteCopy = z.infer<typeof siteCopySchema>;

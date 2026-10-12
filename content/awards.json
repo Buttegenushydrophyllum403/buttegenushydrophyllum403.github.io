@@ -1,0 +1,28 @@
+[
+  {
+    "id": "irc",
+    "result": "6th globally",
+    "event": "International Rover Challenge",
+    "eventShort": "IRC",
+    "team": "Team Altair",
+    "details": ["1st in Bangladesh", "1st in the Science Task"],
+    "projectSlug": "project-altair"
+  },
+  {
+    "id": "erc",
+    "result": "16th globally",
+    "event": "European Rover Challenge",
+    "eventShort": "ERC",
+    "team": "Team Altair",
+    "projectSlug": "project-altair"
+  },
+  {
+    "id": "urc",
+    "result": "Competed",
+    "event": "University Rover Challenge",
+    "eventShort": "URC",
+    "team": "Team Altair",
+    "projectSlug": "project-altair"
+  },
+  { "id": "coderush", "result": "2nd place", "event": "CodeRush Hackathon", "eventShort": "CodeRush" }
+]

@@ -1,0 +1,435 @@
+[
+  {
+    "slug": "genie-a",
+    "title": "GenieA",
+    "tagline": "A public-safety platform built with Sylhet Metropolitan Police: one microservice backend behind a citizen app, a police app, and the admin panels that run the operation.",
+    "org": "Star Technologies",
+    "role": "Senior Software Engineer",
+    "period": "2025 – Present",
+    "category": "app",
+    "status": "Live",
+    "badges": ["10K+ users", "Microservices", "Play Store", "App Store"],
+    "accent": "primary",
+    "cover": {
+      "src": "/images/projects/CitizenApp1.jpeg",
+      "alt": "GenieA citizen app: a map of nearby police stations, an emergency button and live location sharing",
+      "width": 1080,
+      "height": 2399,
+      "placeholder": "phone"
+    },
+    "screenGroups": [
+      {
+        "label": "Citizen app",
+        "screens": [
+          {
+            "src": "/images/projects/CitizenApp1.jpeg",
+            "alt": "GenieA citizen app: a map of nearby police stations, an emergency button and live location sharing",
+            "width": 1080,
+            "height": 2399,
+            "placeholder": "phone"
+          },
+          {
+            "src": "/images/projects/CitizenApp2.jpeg",
+            "alt": "GenieA citizen app: the SOS countdown while a help request goes out",
+            "width": 1080,
+            "height": 2400,
+            "placeholder": "phone"
+          },
+          {
+            "src": "/images/projects/CitizenApp3.jpeg",
+            "alt": "GenieA citizen app: connecting to police dispatch, with the caller's location on the map",
+            "width": 1080,
+            "height": 2400,
+            "placeholder": "phone"
+          }
+        ]
+      },
+      {
+        "label": "Police app",
+        "screens": [
+          {
+            "src": "/images/projects/PoliceApp1.jpeg",
+            "alt": "GenieA police app: an officer's home screen with a live map, duty log and case status",
+            "width": 1080,
+            "height": 2400,
+            "placeholder": "phone"
+          },
+          {
+            "src": "/images/projects/PoliceApp2.jpeg",
+            "alt": "GenieA police app: the live case list, with a reported incident awaiting response",
+            "width": 1080,
+            "height": 2400,
+            "placeholder": "phone"
+          },
+          {
+            "src": "/images/projects/PoliceApp3.jpeg",
+            "alt": "GenieA police app: an officer's duty schedule for the month",
+            "width": 1080,
+            "height": 2400,
+            "placeholder": "phone"
+          }
+        ]
+      }
+    ],
+    "gallery": [
+      {
+        "alt": "GenieA web admin panel",
+        "width": 1600,
+        "height": 1000,
+        "placeholder": "desktop",
+        "caption": "Admin panel"
+      }
+    ],
+    "storeLinks": [
+      {
+        "store": "play",
+        "href": "https://play.google.com/store/apps/details?id=com.startechnologies.genie_a&hl=en"
+      },
+      { "store": "app" }
+    ],
+    "brief": [
+      "Built in collaboration with Sylhet Metropolitan Police in Bangladesh, GenieA connects citizens and police through dedicated apps.",
+      "Citizens can raise an SOS that shares their live location and connects them to dispatch. Officers get live cases, duty logs and shift schedules. Admin panels run the whole operation.",
+      "It's used by 10K+ people, and by the police department itself."
+    ],
+    "myRole": [
+      "Designed and built the microservice backend that serves all three products.",
+      "Split services by job across FastAPI, NestJS and Go, with Redis for caching and RabbitMQ for messaging between them.",
+      "Containerised everything with Docker and ran it on Kubernetes.",
+      "Ran it end to end, from system design and API contracts to production release."
+    ],
+    "architecture": {
+      "caption": "Three products, one platform.",
+      "stages": [
+        {
+          "label": "People",
+          "nodes": ["Citizens", "Police officers", "Administrators"]
+        },
+        {
+          "label": "Apps",
+          "nodes": ["Citizen app", "Police app", "Web admin panels"]
+        },
+        {
+          "label": "Services",
+          "nodes": ["FastAPI services", "NestJS services", "Go services"]
+        },
+        {
+          "label": "Infra",
+          "nodes": ["Redis", "RabbitMQ", "Docker + Kubernetes"]
+        }
+      ]
+    },
+    "stack": [
+      "FastAPI",
+      "NestJS",
+      "Go",
+      "Redis",
+      "RabbitMQ",
+      "Docker",
+      "Kubernetes",
+      "Mobile apps (Android & iOS)",
+      "Web admin panels"
+    ],
+    "results": [
+      "Used by a 10K+ user base and by Sylhet Metropolitan Police.",
+      "Live on both the Play Store and the App Store."
+    ]
+  },
+  {
+    "slug": "health-star",
+    "title": "HealthStar",
+    "tagline": "An all-in-one healthcare app. I built the MVP from scratch: the microservice backend, the mobile app and the admin panel.",
+    "org": "Star Technologies",
+    "role": "Senior Software Engineer",
+    "period": "2025 – Present",
+    "category": "app",
+    "status": "MVP, in progress",
+    "badges": ["Built from scratch", "Microservices", "Play Store", "App Store"],
+    "accent": "mint",
+    "cover": { "alt": "HealthStar app home screen", "width": 1080, "height": 2340, "placeholder": "phone" },
+    "screenGroups": [
+      {
+        "label": "App",
+        "screens": [
+          { "alt": "HealthStar app screen 1", "width": 1080, "height": 2340, "placeholder": "phone" },
+          { "alt": "HealthStar app screen 2", "width": 1080, "height": 2340, "placeholder": "phone" }
+        ]
+      }
+    ],
+    "storeLinks": [
+      { "store": "play", "href": "https://play.google.com/store/apps/details?id=com.healthstarv3.app&hl=en" },
+      { "store": "app" }
+    ],
+    "brief": ["HealthStar is an all-in-one healthcare app, available on the Play Store and the App Store."],
+    "myRole": [
+      "Built the MVP from scratch: the backend, the mobile app and the admin panel.",
+      "Used the same microservice approach as GenieA: FastAPI, NestJS and Go services, Redis, RabbitMQ, Docker and Kubernetes.",
+      "Development is ongoing."
+    ],
+    "architecture": {
+      "caption": "Same playbook as GenieA, different patients.",
+      "stages": [
+        {
+          "label": "Apps",
+          "nodes": ["Mobile app", "Admin panel"]
+        },
+        {
+          "label": "Services",
+          "nodes": ["FastAPI / NestJS / Go microservices"]
+        },
+        {
+          "label": "Infra",
+          "nodes": ["Redis", "RabbitMQ", "Docker + Kubernetes"]
+        }
+      ]
+    },
+    "stack": [
+      "FastAPI",
+      "NestJS",
+      "Go",
+      "Redis",
+      "RabbitMQ",
+      "Docker",
+      "Kubernetes",
+      "Mobile app (Android & iOS)",
+      "Admin panel"
+    ],
+    "results": ["MVP shipped to the Play Store and App Store.", "Currently under active development."],
+    "detailsPending": true
+  },
+  {
+    "slug": "star-watch",
+    "title": "StarWatch",
+    "tagline": "Drones built from scratch: sensors for autonomy, AI for mission planning, and live video back to the ground.",
+    "org": "Star Technologies",
+    "role": "Project Manager / Developer",
+    "period": "Nov 2025 – Present",
+    "category": "robotics",
+    "status": "In progress",
+    "badges": ["Drones", "Autonomy", "AI mission planning"],
+    "accent": "sky",
+    "cover": {
+      "src": "/images/projects/Starwatch.jpeg",
+      "alt": "The StarWatch team standing behind a row of their quadcopters",
+      "width": 2048,
+      "height": 1536,
+      "placeholder": "drone"
+    },
+    "gallery": [
+      {
+        "kind": "video",
+        "src": "/images/projects/Starwatch_video.mp4",
+        "poster": "/images/projects/Starwatch_video-poster.jpg",
+        "alt": "StarWatch test flights at dusk: drones launched by hand, hovering and flying over a field",
+        "width": 576,
+        "height": 1024,
+        "placeholder": "drone",
+        "caption": "Test flights. No drones were harmed (this time)."
+      }
+    ],
+    "brief": [
+      "StarWatch builds drone systems from scratch under Star Technologies.",
+      "The goal is automation: drones that sense their surroundings, plan missions with AI, and stream live video back to the ground."
+    ],
+    "myRole": [
+      "Project manager and developer.",
+      "Flight stack: ArduPilot on the flight controller, talking MAVLink to a ROS-based companion computer.",
+      "Autonomy from LiDAR, optical flow and sonar, so the drones can hold position and avoid obstacles without relying on GPS alone.",
+      "Live video to the ground station over WebRTC, and AI-based mission planning on top."
+    ],
+    "architecture": {
+      "caption": "From sensors to missions.",
+      "stages": [
+        {
+          "label": "Sense",
+          "nodes": ["LiDAR", "Optical flow", "Sonar", "Camera"]
+        },
+        {
+          "label": "Fly",
+          "nodes": ["ArduPilot flight controller", "MAVLink", "ROS companion computer"]
+        },
+        {
+          "label": "Plan & stream",
+          "nodes": ["AI mission planning", "WebRTC live video", "Ground station"]
+        }
+      ]
+    },
+    "stack": ["ArduPilot", "MAVLink", "ROS", "Python", "C++", "WebRTC", "LiDAR", "Optical flow", "Sonar"],
+    "results": ["Flight-tested across several airframes.", "Work in progress. Watch this space (and the sky)."],
+    "detailsPending": true
+  },
+  {
+    "slug": "project-altair",
+    "title": "Project Altair",
+    "tagline": "IUT's Mars rover. I wrote the software that let it drive, see, grab things and find its own way.",
+    "org": "Islamic University of Technology",
+    "role": "Software Sub-team Senior Developer",
+    "period": "2023 – 2024",
+    "category": "robotics",
+    "status": "6th globally at IRC",
+    "badges": ["IRC: 6th globally", "ERC: 16th globally", "URC competitor"],
+    "accent": "gold",
+    "cover": {
+      "src": "/images/projects/Altair.jpeg",
+      "alt": "Rifat on stage at an IUT Robotics Society showcase, with the rover beside him",
+      "width": 2048,
+      "height": 1197,
+      "placeholder": "rover"
+    },
+    "gallery": [
+      {
+        "alt": "Altair rover robotic arm grasping an object",
+        "width": 1600,
+        "height": 1000,
+        "placeholder": "rover",
+        "kind": "video"
+      },
+      { "alt": "Team Altair at competition", "width": 1600, "height": 1000, "placeholder": "rover" }
+    ],
+    "brief": [
+      "Project Altair is IUT's Mars rover team, competing in international rover challenges.",
+      "The rover needed four-wheel drive, a six-joint robotic arm, vision to recognise objects, and autonomous navigation."
+    ],
+    "myRole": [
+      "Senior developer on the software sub-team.",
+      "Implemented the four-wheel drive and 6-joint arm control systems, as ROS nodes talking to microcontroller motor drivers.",
+      "Built inverse kinematics for precise arm manipulation.",
+      "Trained a YOLO-style object detector on a custom dataset and used its detections to drive grasping.",
+      "Built autonomous navigation with real-time obstacle avoidance."
+    ],
+    "architecture": {
+      "caption": "See it, reach it, grab it, drive on.",
+      "stages": [
+        {
+          "label": "Perceive",
+          "nodes": ["Camera + OpenCV", "Object detection (custom dataset)", "Obstacle detection"]
+        },
+        {
+          "label": "Decide",
+          "nodes": ["ROS", "Inverse kinematics", "Autonomous navigation"]
+        },
+        {
+          "label": "Act",
+          "nodes": ["6-joint arm & grasping", "Four-wheel drive", "Microcontroller motor drivers"]
+        }
+      ]
+    },
+    "stack": [
+      "ROS",
+      "Python",
+      "C++",
+      "OpenCV",
+      "YOLO",
+      "Inverse kinematics",
+      "Microcontrollers",
+      "Autonomous navigation"
+    ],
+    "results": [
+      "International Rover Challenge: 6th globally, 1st in Bangladesh, 1st in the Science Task.",
+      "European Rover Challenge: 16th globally.",
+      "Competed at the University Rover Challenge."
+    ],
+    "detailsPending": true
+  },
+  {
+    "slug": "project-aero",
+    "title": "Project Aero",
+    "tagline": "The drone team I led: flight control, real-time computer vision, and 3D maps built from aerial footage.",
+    "org": "Project Aero",
+    "role": "Team Lead",
+    "period": "2024 – 2025",
+    "category": "robotics",
+    "badges": ["Team lead", "Computer vision", "3D mapping"],
+    "accent": "sky",
+    "cover": {
+      "src": "/images/projects/Aero.jpeg",
+      "alt": "Project Aero's drones on display, with a crowd of visitors gathered around the table",
+      "width": 1078,
+      "height": 1440,
+      "placeholder": "drone"
+    },
+    "gallery": [
+      {
+        "alt": "Real-time object detection from the drone camera",
+        "width": 1600,
+        "height": 1000,
+        "placeholder": "drone",
+        "kind": "video"
+      },
+      {
+        "alt": "3D map reconstructed from drone footage",
+        "width": 1600,
+        "height": 1000,
+        "placeholder": "drone"
+      }
+    ],
+    "brief": ["Project Aero is a drone team working on flight control, navigation and aerial computer vision."],
+    "myRole": [
+      "Led the team.",
+      "Worked on flight control and navigation with ArduPilot and MAVLink.",
+      "Built CV pipelines with OpenCV and YOLO for real-time object detection and tracking.",
+      "Created 3D maps of environments from drone footage using photogrammetry (structure from motion)."
+    ],
+    "architecture": {
+      "caption": "Fly, see, map.",
+      "stages": [
+        {
+          "label": "Fly",
+          "nodes": ["ArduPilot", "MAVLink", "Navigation"]
+        },
+        {
+          "label": "See",
+          "nodes": ["YOLO detection", "Object tracking"]
+        },
+        {
+          "label": "Map",
+          "nodes": ["Photogrammetry", "3D reconstruction"]
+        }
+      ]
+    },
+    "stack": ["ArduPilot", "MAVLink", "Python", "OpenCV", "YOLO", "Object tracking", "Photogrammetry"],
+    "results": ["Real-time detection and tracking pipelines, plus 3D environment maps from drone footage."],
+    "detailsPending": true
+  },
+  {
+    "slug": "megamind-llm",
+    "title": "Offline LLMs at Megamind",
+    "tagline": "Fine-tuning large language models for specific jobs, then squeezing them onto hardware that isn't a data centre.",
+    "org": "Megamind Tech (Remote, Canada)",
+    "role": "LLM Developer / ML Engineer",
+    "period": "Feb 2024 – Jul 2024",
+    "category": "ai",
+    "badges": ["PEFT/LoRA", "vLLM & llama.cpp", "4/8-bit quantization"],
+    "accent": "primary",
+    "cover": { "alt": "Diagram of an offline LLM pipeline", "width": 1600, "height": 1000, "placeholder": "brain" },
+    "brief": [
+      "Megamind Tech needed large language models that work offline and fit task-specific applications.",
+      "That meant fine-tuning models and squeezing inference into resource-constrained environments."
+    ],
+    "myRole": [
+      "Fine-tuned LLMs for task-specific applications with Hugging Face Transformers and PEFT/LoRA.",
+      "Optimized offline inference with vLLM and llama.cpp, using 4/8-bit quantization to fit models on resource-constrained hardware.",
+      "Served the models behind REST inference APIs for downstream systems."
+    ],
+    "architecture": {
+      "caption": "From general model to task-specific, offline, behind an API.",
+      "stages": [
+        {
+          "label": "Adapt",
+          "nodes": ["Base LLM", "PEFT/LoRA fine-tuning"]
+        },
+        {
+          "label": "Shrink",
+          "nodes": ["4/8-bit quantization", "vLLM / llama.cpp"]
+        },
+        {
+          "label": "Serve",
+          "nodes": ["REST inference APIs"]
+        }
+      ]
+    },
+    "stack": ["Hugging Face Transformers", "PEFT/LoRA", "vLLM", "llama.cpp", "Quantization", "REST APIs"],
+    "results": ["Task-specific LLMs running offline on constrained hardware, served to downstream systems over REST."],
+    "detailsPending": true
+  }
+]

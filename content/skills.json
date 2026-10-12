@@ -1,0 +1,99 @@
+[
+  {
+    "id": "backend",
+    "flag": "--backend",
+    "title": "Backend",
+    "blurb": "The unglamorous part that keeps the glamorous part alive.",
+    "skills": ["FastAPI", "Spring Boot", "Node.js / NestJS", "REST", "gRPC", "WebSockets", "microservices"]
+  },
+  {
+    "id": "languages",
+    "flag": "--lang",
+    "title": "Languages",
+    "blurb": "Seven, and counting. Uses whichever one the bug isn't in.",
+    "skills": ["Python", "Java", "Go", "TypeScript", "C++", "Dart", "SQL"]
+  },
+  {
+    "id": "data",
+    "flag": "--data",
+    "title": "Databases & search",
+    "blurb": "Picks the database before the database picks a fight.",
+    "skills": ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Elasticsearch", "pgvector", "Qdrant", "FAISS"]
+  },
+  {
+    "id": "async",
+    "flag": "--async",
+    "title": "Messaging & async",
+    "blurb": "For when “we'll do it later” needs to be a guarantee.",
+    "skills": ["Kafka", "RabbitMQ", "Redis Pub/Sub", "AWS SQS/SNS", "Celery"]
+  },
+  {
+    "id": "aws",
+    "flag": "--aws",
+    "title": "AWS",
+    "blurb": "Knows what most of the acronyms mean. Has read the bill.",
+    "skills": [
+      "EC2",
+      "ECS",
+      "EKS",
+      "ECR",
+      "Lambda",
+      "API Gateway",
+      "S3",
+      "RDS",
+      "CloudFront",
+      "IAM",
+      "VPC",
+      "CloudWatch"
+    ]
+  },
+  {
+    "id": "devops",
+    "flag": "--ops",
+    "title": "DevOps",
+    "blurb": "YAML, but with feelings.",
+    "skills": [
+      "Docker",
+      "Kubernetes",
+      "Helm",
+      "Terraform",
+      "GitHub Actions CI/CD",
+      "Nginx",
+      "Prometheus",
+      "Grafana",
+      "DigitalOcean",
+      "Vercel"
+    ]
+  },
+  {
+    "id": "ml",
+    "flag": "--ml",
+    "title": "Machine learning",
+    "blurb": "Makes big models smaller and small models smarter.",
+    "skills": [
+      "PyTorch",
+      "Hugging Face Transformers",
+      "PEFT/LoRA",
+      "vLLM",
+      "llama.cpp",
+      "quantization",
+      "distillation",
+      "RAG",
+      "LLM agents"
+    ]
+  },
+  {
+    "id": "robotics",
+    "flag": "--fly",
+    "title": "Robotics",
+    "blurb": "Rovers, arms, drones. Occasionally on purpose.",
+    "skills": ["ROS", "MAVLink", "ArduPilot", "WebRTC", "MuJoCo"]
+  },
+  {
+    "id": "frontend",
+    "flag": "--ui",
+    "title": "Mobile & frontend",
+    "blurb": "Can build the app. Would rather be the API it calls.",
+    "skills": ["Flutter", "Next.js", "React"]
+  }
+]

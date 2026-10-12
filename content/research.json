@@ -1,0 +1,80 @@
+[
+  {
+    "id": "sam3",
+    "title": "The Presence Bottleneck: Domain Adaptation and Low-End Deployment of SAM3",
+    "venue": "BSc thesis, IUT",
+    "authors": ["Fairuz Khan", "Rifat Sarwar", "Wasif Uddin"],
+    "note": "Supervisor: Dr. Md. Hasanul Kabir",
+    "year": "2026",
+    "pdf": "/papers/presence-bottleneck-sam3-thesis.pdf",
+    "headline": {
+      "value": "657 MB",
+      "label": "RAM to run SAM3 after INT8 quantization, with no measurable accuracy loss"
+    },
+    "points": [
+      "Re-evaluated SAM3 domain adaptation and efficiency methods under a pre-registered protocol, with bootstrap CIs and matched controls.",
+      "A data-free prompt-embedding rebalancing raised underwater segmentation by +0.090 mIoU.",
+      "INT8 quantization runs SAM3 in 657 MB / 2.5 GB RAM with no measurable accuracy loss.",
+      "Output-level knowledge distillation raised a small backbone from 0.339 to 0.486 mIoU at the same size and speed."
+    ],
+    "tldr": "Taught a big segmentation model to see underwater, then put it on a diet."
+  },
+  {
+    "id": "mjcf",
+    "title": "From Prompt to Kinematics: Self-Verifying Generation of Valid, Controllable Robot Models",
+    "venue": "Unpublished manuscript",
+    "authors": [
+      "Khandakar Shakib Al Hasan",
+      "Md. Rifat Sarwar",
+      "Nowshin Mahjabin",
+      "Nufsat Farooque",
+      "Meftahul Jannati Anonna",
+      "Fairuz Khan"
+    ],
+    "year": "2026",
+    "pdf": "/papers/prompt-to-kinematics.pdf",
+    "headline": { "value": "0.92", "label": "pass@1 with zero invalid models, vs. 0.32 for direct LLM generation" },
+    "points": [
+      "An agentic LLM system that writes MuJoCo (MJCF) robot models from text or reference images.",
+      "After every edit, a verifier compiles the model and step-probes it for instability.",
+      "pass@1 = 0.92 with zero invalid models on a 25-prompt benchmark, compared with 0.32 for direct LLM generation.",
+      "Includes a vision-based judge that scores geometry and pose."
+    ],
+    "tldr": "The LLM designs the robot. A very strict verifier stops it from lying about physics."
+  },
+  {
+    "id": "certified-records",
+    "title": "Certified Records: An Exact Audit of AI-Claimed Mathematical Constructions",
+    "venue": "Unpublished manuscript",
+    "year": "2026",
+    "pdf": "/papers/certified-records.pdf",
+    "headline": {
+      "value": "115",
+      "label": "“new best-known” record claims from 10 AI discovery systems, re-verified exactly"
+    },
+    "points": [
+      "Re-verified 115 “new best-known” record claims from 10 AI discovery systems (incl. AlphaEvolve) in exact rational and interval arithmetic.",
+      "Found printed values that do not hold, records that do not beat earlier public constructions, and a leaderboard verifier exploit (true score 0.214 vs. 0.563 displayed).",
+      "Computer-assisted existence proofs for 61 spherical t-designs (Krawczyk interval-Newton)."
+    ],
+    "tldr": "I fact-checked the AIs doing maths. Floating point had some explaining to do."
+  },
+  {
+    "id": "bsl-glove",
+    "title": "Rotation-Robust Bangla Sign Language Recognition from a Wrist-Referenced 6-IMU Glove",
+    "venue": "Course project, Pattern Recognition",
+    "authors": ["Khandakar Shakib Al Hasan", "Md. Rifat Sarwar", "Meftahul Jannati Anonna", "Wasif Uddin"],
+    "year": "2026",
+    "pdf": "/papers/rotation-robust-bdsl-glove.pdf",
+    "headline": {
+      "value": "0.00",
+      "label": "macro-F1 drop under an SO(3) rotation stress test (baselines lost 0.82–0.87)"
+    },
+    "points": [
+      "Built an ESP32 glove with six MPU6050 IMUs.",
+      "Measuring finger orientation relative to the wrist makes the features exactly invariant to global hand rotation.",
+      "Zero macro-F1 drop under an SO(3) rotation stress test across RF, SVM and a CNN–BiLSTM–attention model. Absolute-orientation baselines lost 0.82–0.87."
+    ],
+    "tldr": "Hold your hand however you like. The glove genuinely does not care."
+  }
+]

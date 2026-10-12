@@ -1,0 +1,119 @@
+[
+  {
+    "id": "iut",
+    "version": "0.1.0",
+    "period": "2022",
+    "org": "Islamic University of Technology",
+    "orgNote": "IUT",
+    "role": "Started a BSc in Computer Science & Engineering",
+    "kind": "education",
+    "summary": "Initial commit.",
+    "highlights": ["Enrolled in CSE at IUT", "Learned that robots are just bugs with wheels"],
+    "knownIssues": "Believed `git push --force` was a motivational quote."
+  },
+  {
+    "id": "altair",
+    "version": "0.2.0",
+    "period": "2023 – 2024",
+    "org": "Project Altair",
+    "orgNote": "IUT Mars Rover Team",
+    "role": "Software Sub-team Senior Developer",
+    "kind": "team",
+    "summary": "Wrote software for a Mars rover that competed on three international stages.",
+    "highlights": [
+      "Four-wheel drive, plus a 6-joint arm steered by inverse kinematics",
+      "Object recognition trained on a custom dataset, used to guide grasping",
+      "Autonomous navigation with obstacle avoidance",
+      "Placed 6th globally at IRC (1st in Bangladesh, 1st in the Science Task), 16th at ERC, and competed at URC"
+    ],
+    "knownIssues": "Rover occasionally mistakes a rock for the science sample. In its defence, they look alike.",
+    "projectSlug": "project-altair"
+  },
+  {
+    "id": "megamind",
+    "version": "0.3.0",
+    "period": "Feb 2024 – Jul 2024",
+    "org": "Megamind Tech",
+    "orgNote": "remote, Canada",
+    "role": "LLM Developer / ML Engineer",
+    "kind": "work",
+    "summary": "Made large language models smaller, offline and good at one job each.",
+    "highlights": [
+      "Fine-tuned LLMs with Hugging Face Transformers and PEFT/LoRA",
+      "Ran them offline with vLLM and llama.cpp, using 4/8-bit quantization to fit modest hardware",
+      "Served them behind REST inference APIs"
+    ],
+    "knownIssues": "Now suggests “we could just quantize it” about things that are not models.",
+    "projectSlug": "megamind-llm"
+  },
+  {
+    "id": "aero",
+    "version": "0.4.0",
+    "period": "2024 – 2025",
+    "org": "Project Aero",
+    "orgNote": "drone team",
+    "role": "Team Lead",
+    "kind": "team",
+    "summary": "Went from driving robots to flying them.",
+    "highlights": [
+      "Flight control, navigation, and 3D maps built from drone footage",
+      "Computer-vision pipelines for real-time object detection and tracking"
+    ],
+    "knownIssues": "Gravity remains undefeated.",
+    "projectSlug": "project-aero"
+  },
+  {
+    "id": "star-technologies",
+    "version": "1.0.0",
+    "period": "Mar 2025 – Present",
+    "org": "Star Technologies",
+    "role": "Senior Software Engineer",
+    "kind": "work",
+    "summary": "First stable release. Breaking change: now responsible for production.",
+    "highlights": [
+      "Own backend architecture end to end: system design, API contracts, deployment and monitoring",
+      "Microservices in FastAPI, NestJS, Go and Spring Boot on AWS (ECS/EKS), with Docker, Kubernetes and Terraform",
+      "Real-time chat and notifications over WebSockets, Redis pub/sub, and Kafka/RabbitMQ between services",
+      "CI/CD with GitHub Actions; observability with Prometheus, Grafana and CloudWatch",
+      "Shipped ML to production: a RAG pipeline over vector search, and a voice assistant",
+      "GenieA, with Sylhet Metropolitan Police: one microservice backend for a 10K+ user base",
+      "HealthStar: built the MVP from scratch"
+    ],
+    "knownIssues": "Refers to weekends as “low-traffic windows”.",
+    "projectSlug": "genie-a",
+    "current": true
+  },
+  {
+    "id": "star-watch",
+    "version": "1.1.0",
+    "period": "Nov 2025 – Present",
+    "org": "StarWatch",
+    "orgNote": "under Star Technologies",
+    "role": "Project Manager / Developer",
+    "kind": "work",
+    "summary": "Building drone systems from scratch. This time the only judge is gravity.",
+    "highlights": [
+      "MAVLink, ROS, ArduPilot and WebRTC video streaming",
+      "Autonomy from LiDAR, optical flow and sonar",
+      "AI-based mission planning"
+    ],
+    "knownIssues": "Has started saying “ground truth” and meaning the actual ground.",
+    "projectSlug": "star-watch",
+    "current": true
+  },
+  {
+    "id": "graduation",
+    "version": "2.0.0",
+    "period": "2026",
+    "org": "Islamic University of Technology",
+    "orgNote": "IUT",
+    "role": "Graduated, BSc in CSE",
+    "kind": "education",
+    "summary": "Breaking change: removed the `student` flag. Shipped alongside an engineering job, against medical advice.",
+    "highlights": [
+      "CGPA 3.78 / 4.00",
+      "Thesis on adapting SAM3 to new domains and running it on low-end hardware, supervised by Dr. Md. Hasanul Kabir"
+    ],
+    "knownIssues": "Sleep is scheduled for a future release."
+  }
+]
