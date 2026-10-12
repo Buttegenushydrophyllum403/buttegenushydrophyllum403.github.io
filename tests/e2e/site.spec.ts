@@ -1,7 +1,9 @@
 import { expect, test } from "@playwright/test";
 // Expected text comes from the content files, so editing copy doesn't break these tests.
+import changelog from "../../content/changelog.json";
 import errors from "../../content/errors.json";
 import home from "../../content/home.json";
+import profile from "../../content/profile.json";
 import projectsPage from "../../content/projects-page.json";
 import site from "../../content/site.json";
 
@@ -13,7 +15,7 @@ test("home page renders the key sections", async ({ page }) => {
   for (const section of [home.sections.changelog, home.sections.awards, home.sections.research]) {
     await expect(page.getByRole("heading", { name: section.title })).toBeVisible();
   }
-  await expect(page.locator("#changelog ol > li")).toHaveCount(7);
+  await expect(page.locator("#changelog ol > li")).toHaveCount(changelog.length);
 });
 
 test("every case study page renders", async ({ page }) => {
@@ -31,7 +33,7 @@ test("main navigation works", async ({ page, isMobile }) => {
     if (isMobile) await page.getByRole("button", { name: "Open menu" }).click();
     const nav = page.getByRole("navigation", { name: isMobile ? "Mobile" : "Main" });
     await nav.getByRole("link", { name: label, exact: true }).click();
-    await expect(page).toHaveURL(new RegExp(`${path}$`));
+    await expect(page).toHaveURL(new RegExp(`${path}/?$`));
   }
 });
 
@@ -57,10 +59,14 @@ test("unknown routes show the lost-rover 404", async ({ page }) => {
   await expect(page.getByRole("heading", { name: errors.notFound.title })).toBeVisible();
 });
 
-test("/cv redirects to the PDF", async ({ request }) => {
-  const res = await request.get("/cv", { maxRedirects: 0 });
-  expect([307, 308]).toContain(res.status());
-  expect(res.headers()["location"]).toContain("/cv/rifat_sarwar_cv.pdf");
+test("/cv forwards to the PDF", async ({ request }) => {
+  // GitHub Pages can't redirect, so /cv/ is a static page that forwards with a meta refresh.
+  const page = await request.get("/cv/");
+  expect(page.status()).toBe(200);
+  expect(await page.text()).toContain(`url=${profile.cvPath}`);
+  const pdf = await request.get(profile.cvPath);
+  expect(pdf.status()).toBe(200);
+  expect(pdf.headers()["content-type"]).toContain("application/pdf");
 });
 
 test("the headshot flips over to show the back", async ({ page }) => {
@@ -70,8 +76,16 @@ test("the headshot flips over to show the back", async ({ page }) => {
   await expect(page.getByRole("button", { name: site.photoHint.flipBack })).toHaveAttribute("aria-pressed", "true");
 });
 
+test("link-preview images are real PNGs", async ({ request, page }) => {
+  await page.goto("/");
+  const og = await page.locator('meta[property="og:image"]').getAttribute("content");
+  expect(og).toMatch(/\/opengraph-image\.png\?/);
+  const res = await request.get(new URL(og!).pathname);
+  expect(res.headers()["content-type"]).toBe("image/png");
+});
+
 test("sitemap and robots are generated", async ({ request }) => {
   const sitemap = await (await request.get("/sitemap.xml")).text();
   for (const slug of SLUGS) expect(sitemap).toContain(`/projects/${slug}`);
-  expect(await (await request.get("/robots.txt")).text()).toContain("Disallow: /api/");
+  expect(await (await request.get("/robots.txt")).text()).toContain("Sitemap:");
 });

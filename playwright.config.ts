@@ -18,10 +18,12 @@ export default defineConfig({
     { name: "mobile", use: { ...devices["Pixel 7"], channel: process.env.PW_CHANNEL } },
   ],
   webServer: {
-    command: `npm run build && npx next start -p ${PORT}`,
+    // The real deployment is a static export on GitHub Pages; test exactly that, served the same way.
+    command: `npm run build && node scripts/serve-static.mjs ${PORT}`,
     url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,
     timeout: 240_000,
-    env: { CHAT_MOCK: "1", NEXT_PUBLIC_SITE_URL: `http://localhost:${PORT}` },
+    // The chat worker isn't running in tests: the specs intercept this URL and answer with a mock.
+    env: { NEXT_PUBLIC_CHAT_URL: `http://localhost:${PORT}/__mock-chat`, NEXT_PUBLIC_SITE_URL: `http://localhost:${PORT}` },
   },
 });
