@@ -254,7 +254,6 @@ export const aboutCopySchema = z.strictObject({
   photo: photoCopy,
   faq: sectionCopy.extend({ items: z.array(z.strictObject({ q: text, a: text })) }),
   education: sectionCopy.extend({ heading: text, rows: z.array(z.strictObject({ label: text, value: text })), stamp: text }),
-  colophon: z.strictObject({ title: text, text }),
 });
 export type AboutCopy = z.infer<typeof aboutCopySchema>;
 

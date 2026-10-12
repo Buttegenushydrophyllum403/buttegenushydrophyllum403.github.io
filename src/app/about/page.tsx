@@ -81,15 +81,6 @@ export default function AboutPage() {
           </div>
         </section>
       </Reveal>
-
-      <section className="mt-24 max-w-3xl border-t border-dashed border-border pt-8" aria-labelledby="colophon-title">
-        <h2 id="colophon-title" className="font-display text-2xl">
-          {copy.colophon.title}
-        </h2>
-        <p className="mt-2 text-muted">
-          <Rich text={copy.colophon.text} />
-        </p>
-      </section>
     </div>
   );
 }

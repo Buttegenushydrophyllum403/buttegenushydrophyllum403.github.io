@@ -1,5 +1,5 @@
 {
-  "metaDescription": "About Rifat Sarwar: backend engineer who gets his hands dirty with ML and embedding systems, CSE graduate of IUT.",
+  "metaDescription": "About Rifat Sarwar: backend engineer who gets his hands dirty with ML and embedded systems, CSE graduate of IUT.",
   "eyebrow": "About",
   "title": "Serious about the work. ==Not about myself.==",
   "paragraphs": [
@@ -66,9 +66,5 @@
       { "label": "Side quests", "value": "1 Mars rover, 1 drone team, 1 engineering job" }
     ],
     "stamp": "Graduated"
-  },
-  "colophon": {
-    "title": "Colophon",
-    "text": "Built with Next.js, TypeScript, Tailwind CSS and Motion, and deployed on Vercel. Set in Young Serif, IBM Plex Sans and Plex Mono, with Kalam standing in for handwriting I don't have. Light mode is graph paper; dark mode is a blueprint. The sounds are synthesized in your browser, so there are no audio files. The AI twin runs on Google Gemini and only knows what's on this site. The contact form has no server at all: it writes the email, and your mail app sends it."
   }
 }

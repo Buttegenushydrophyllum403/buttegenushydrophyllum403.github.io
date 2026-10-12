@@ -1,6 +1,6 @@
 {
   "seo": {
-    "description": "Rifat Sarwar: backend engineer who gets his hands dirty with ML and embedding systems. Microservices on AWS, LLMs squeezed onto small hardware, a Mars rover ranked 6th globally, and drones built from scratch.",
+    "description": "Rifat Sarwar: backend engineer who gets his hands dirty with ML and embedded systems. Microservices on AWS, LLMs squeezed onto small hardware, a Mars rover ranked 6th globally, and drones built from scratch.",
     "keywords": [
       "Rifat Sarwar",
       "Backend Engineer",
@@ -32,7 +32,7 @@
   },
   "theme": { "toBlueprint": "Blueprint mode", "toPaper": "Back to graph paper" },
   "footer": {
-    "tagline": "Backend Engineer · Machine Learning. Built in Bangladesh with Next.js, curiosity and occasional panic.",
+    "tagline": "Backend Engineer · ML & Embedded Systems. Built in Bangladesh with curiosity and occasional panic.",
     "indexTitle": "Index",
     "index": [
       { "label": "Projects", "href": "/projects" },
@@ -55,7 +55,7 @@
   },
   "ogImage": {
     "eyebrow": "hello, I'm Rifat",
-    "subtitle": "Backend engineer who gets his hands dirty with ML and embedding systems. Microservices on AWS, LLMs on small hardware, a Mars rover ranked 6th globally, and drones built from scratch.",
+    "subtitle": "Backend engineer who gets his hands dirty with ML and embedded systems. Microservices on AWS, LLMs on small hardware, a Mars rover ranked 6th globally, and drones built from scratch.",
     "footer": "now with an AI twin →",
     "projectEyebrow": "Case file",
     "projectFooter": "Rifat Sarwar · Backend Engineer · Machine Learning"

@@ -17,7 +17,7 @@ Every sentence on the site lives in this folder. Change a `.json` file and the s
 | `research.json` | Papers: title, authors, venue, headline number, points, tl;dr, PDF path |
 | `awards.json` | Competition results printed on the receipt |
 | `skills.json` | The `man rifat` options: flag, blurb, skills |
-| `about.json` | About page: paragraphs, FAQ, transcript, colophon |
+| `about.json` | About page: paragraphs, FAQ, transcript |
 | `contact.json` | Contact page and form: labels, placeholders, error messages, email subject |
 | `projects-page.json` | Projects index and the labels on every case-study page |
 | `chat.json` | AI twin: welcome message, suggested questions, error replies, and its personality ("voice") |
