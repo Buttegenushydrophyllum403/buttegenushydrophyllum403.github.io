@@ -22,9 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NEXT_PUBLIC_SITE_URL: https://rifatsarwarcodes.github.io
-      # Repo variable (Settings → Secrets and variables → Actions → Variables), e.g.
-      # https://rifat-ai-twin.<your-subdomain>.workers.dev/chat
-      NEXT_PUBLIC_CHAT_URL: ${{ vars.CHAT_URL }}
+      # The AI twin's worker (npm run twin:deploy). A CHAT_URL repository variable overrides it.
+      NEXT_PUBLIC_CHAT_URL: ${{ vars.CHAT_URL || 'https://rifat-ai-twin.rifat-portfolio.workers.dev/chat' }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5

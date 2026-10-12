@@ -13,7 +13,7 @@ npm run twin:dev                  # the AI twin's worker, http://localhost:8787 
 npm run dev                       # the site, http://localhost:3000 (another terminal)
 ```
 
-Only working on the site? Skip `twin:dev` and point `NEXT_PUBLIC_CHAT_URL` in `.env.local` at the deployed worker instead.
+Only working on the site? Skip `twin:dev` and set `NEXT_PUBLIC_CHAT_URL=https://rifat-ai-twin.rifat-portfolio.workers.dev/chat` in `.env.local` to use the deployed worker.
 
 ## Editing the words
 
@@ -49,9 +49,10 @@ The one part that needs a server, the AI twin, runs as a **Cloudflare Worker** (
    ```bash
    npx wrangler login                      # free Cloudflare account
    npx wrangler secret put GEMINI_API_KEY  # paste the key
+   npx wrangler secret put IP_HASH_SALT    # any long random string, e.g. openssl rand -hex 32
    npm run twin:deploy                     # prints the worker's URL
    ```
-3. **Connect them:** in **Settings → Secrets and variables → Actions → Variables**, add `CHAT_URL` = the worker URL + `/chat`, e.g. `https://rifat-ai-twin.<you>.workers.dev/chat`. Re-run the deploy workflow.
+3. **Connect them:** the deploy workflow already points the site at `https://rifat-ai-twin.rifat-portfolio.workers.dev/chat`. If the worker ever moves, set a `CHAT_URL` repository variable (**Settings → Secrets and variables → Actions → Variables**) to override it.
 
 The twin's knowledge comes from `content/`, so the worker should be redeployed whenever content changes. Either run `npm run twin:deploy` after pushing, or make it automatic: add repository secrets `CLOUDFLARE_API_TOKEN` (Cloudflare dashboard → My Profile → API Tokens → "Edit Cloudflare Workers" template) and `CLOUDFLARE_ACCOUNT_ID`, and the deploy workflow redeploys the worker on every push.
 
