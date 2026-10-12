@@ -11,7 +11,7 @@ To fill a slot:
 
 | What | Folder | Suggested names | Content file |
 | --- | --- | --- | --- |
-| Headshot (square, ≥1200px) | `images/headshot/` | `rifat-headshot.jpg` | `src/content/profile.ts` |
+| Headshot (portrait, ~650×700 or larger) | `images/headshot/` | `image.png` (in place) | `src/content/profile.ts` |
 | GenieA citizen app | `images/projects/genie-a/` | `citizen-01.png`, `citizen-02.png` | `src/content/projects.ts` |
 | GenieA police app | `images/projects/genie-a/` | `police-01.png` | `src/content/projects.ts` |
 | GenieA admin panel (1600×1000) | `images/projects/genie-a/` | `admin-01.png` | `src/content/projects.ts` |
